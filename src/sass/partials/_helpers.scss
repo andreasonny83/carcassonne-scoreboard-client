@@ -1,0 +1,80 @@
+section {
+  padding: 10px 0;
+}
+
+/* fix the Angular-material toast position */
+md-toast {
+  z-index: 10000;
+  position: fixed;
+}
+
+/* custom fonticon rules */
+.icon {
+  font-family: 'myfont';
+  font-size: 40px;
+  color: #EEE;
+
+  &.black {
+    color: #1B1B1B;
+  }
+  &.gray {
+    color: #74747E;
+  }
+  &.red {
+    color: #982716;
+  }
+  &.green {
+    color: #24691B;
+  }
+  &.yellow {
+    color: #D7BC09;
+  }
+  &.blue {
+    color: #1F459E;
+  }
+}
+
+@media screen and (max-width: 720px) {
+  .layout-padding {
+    padding: 0;
+    margin: 0;
+  }
+
+  .layout-padding>*, .layout-padding>.flex {
+    margin: 0;
+  }
+
+  md-card md-card-content, md-list-item.md-no-proxy {
+    display: block;
+    position: relative;
+    padding: 0;
+    overflow: auto;
+  }
+
+  .card .users-list .face {
+    display: none;
+  }
+
+  .card .users-list .secondary-button-padding .md-list-item-text {
+    padding: 10px 0 10px 10px!important;
+    display: block;
+    width: calc(100% - 110px);
+    float: left;
+  }
+
+  .card .users-list .md-list-item {
+    padding: 0!important;
+    position: initial!important;
+  }
+
+  md-list-item .md-secondary {
+    position: initial!important;
+    -webkit-transform: none;
+    transform: none;
+    float: left;
+    width: 100px;
+    margin: 0;
+    padding: 0;
+    text-align: end;
+  }
+}

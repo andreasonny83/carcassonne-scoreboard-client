@@ -1,0 +1,132 @@
+#table-board {
+  position: relative;
+  width: 90%;
+  margin: 0 auto;
+  text-align: center;
+  box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.26);
+
+  ::-webkit-scrollbar {
+      width: 20px;
+  }
+  ::-webkit-scrollbar-track {
+      -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.3);
+  }
+  ::-webkit-scrollbar-thumb {
+    background-color: darkgrey;
+    outline: 1px solid slategrey;
+  }
+
+  .cell + .cell {
+    border-left: 1px solid #ddd;
+  }
+
+  .name {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  }
+
+  .row:hover {
+    background-color: rgba(255,255,100,.4);
+
+    .cell {
+      color: #333;
+
+      .score-log:hover {
+        background-color: rgba(255,255,100,.6);
+      }
+    }
+  }
+
+  .selected {
+    background-color: $carcassonne-yellow-light;
+  }
+
+  #table-head {
+    top: 0;
+    left: 0;
+    width: 100%;
+    background-color: #FFF;
+
+    .cell {
+      padding: 10px 0;
+      border-bottom: 2px solid #ddd;
+    }
+
+    .avatar img {
+        border-radius: 30px;
+        border: 1px solid #ddd;
+        width: 48px;
+    }
+  }
+
+  #table-body {
+    overflow-y: auto;
+    overflow-x: hidden;
+    width: 100%;
+
+    &.scrollfix {
+      width: calc(100% + 20px);
+    }
+
+    .scrollable {
+      max-height: 204px;
+      width: 100%;
+      overflow: auto;
+    }
+
+    .row + .row {
+      border-top: 1px dashed #ddd;
+    }
+
+    .cell {
+      height: 40px;
+      line-height: 20px;
+      font-size: 18px;
+      color: #999;
+
+      .log {
+        padding: 10px 0;
+        font-size: 14px;
+        font-style: italic;
+        color: #999;
+      }
+
+      .score-log {
+        padding: 10px 0;
+        display: block;
+      }
+    }
+  }
+
+  .table-footer {
+    border-top: 2px solid #ddd;
+
+    .cell {
+      padding: 10px 0;
+      height: 40px;
+      line-height: 20px;
+      font-size: 21px;
+      color: #333;
+    }
+
+  }
+}
+
+@media screen and (max-width: 720px) {
+  #table-board {
+    width: 99%;
+
+    #table-head .avatar img {
+      display: none;
+    }
+
+    #table-body .scrollable {
+      max-height: 80px;
+    }
+
+    #table-body.mobile-scrollfix {
+      width: calc(100% + 20px);
+    }
+  }
+}

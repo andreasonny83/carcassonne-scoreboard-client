@@ -1,0 +1,16 @@
+@import "normalize";
+@import "partials/variables";
+@import "partials/animations";
+@import "partials/helpers";
+@import "partials/fonticons";
+
+// elements
+@import "elements/buttons";
+
+// modules
+@import "modules/page-header";
+@import "modules/page-footer";
+@import "modules/home";
+@import "modules/game";
+@import "modules/card";
+@import "modules/table-board";

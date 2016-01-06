@@ -1,0 +1,77 @@
+<div class="page-header-sub">
+  <md-button class="md-raised cs-button-back" ng-href="#/game/setup/{{gameId}}">Game Setup</md-button>
+  <h2 class="home">{{game.name}}</h2>
+</div>
+
+<section layout-padding layout="row" layout-align="center center">
+  <md-card flex class="card">
+    <md-card-content>
+      <h2 class="section-title">Game status</h2>
+
+      <div id="table-board">
+        <div id="table-head">
+          <div layout="row" class="ng-scope layout-row">
+            <div flex class="cell" layout="row" layout-align="center center">
+              <div class="log">
+                Log
+              </div>
+            </div>
+            <div flex ng-repeat="(key, player) in game.players" ng-class="{selected: player.selected}" class="cell">
+              <div class="name">
+                {{player.name}}
+              </div>
+              <div class="meeple">
+                <i class="icon icon-meeple {{player.color}}"></i>
+              </div>
+              <div class="avatar">
+                <img ng-src="{{player.gravatar}}" class="face" alt="{{player.name}}">
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div id="table-body" class="table-body">
+          <div class="scrollable">
+            <div layout="row" class="ng-scope layout-row row" ng-repeat="log in game.logs">
+              <div flex class="cell">
+                <div class="log">
+                  {{log[0]}}
+                </div>
+              </div>
+              <div flex ng-repeat="(key, player) in game.players" ng-class="{selected: player.selected}" class="cell">
+                <div class="score-log player-{{key+1}}">
+                  {{log[key+1]}}
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="table-footer">
+          <div layout="row" class="ng-scope layout-row">
+            <div flex class="cell">
+              <div class="log">
+              </div>
+            </div>
+            <div flex ng-repeat="(key, player) in game.players" ng-class="{selected: player.selected}" class="cell">
+              <div class="score">
+                {{player.score}}
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="game-console-board">
+        <md-button class="md-raised blue" ng-click="gameCtrl.addPoints()">Add points</md-button>
+        <md-button class="md-raised blue" ng-click="gameCtrl.nextPlayer()">Next player</md-button>
+        <md-button class="md-raised red" ng-click="gameCtrl.manualEdit()" ng-disabled="true">Manual Edit</md-button>
+      </div>
+
+    </md-card-content>
+
+    <md-card-actions layout="row" layout-align="end center">
+      <md-button ng-click="gameCtrl.endGame()" ng-disabled="true">End Game</md-button>
+    </md-card-actions>
+  </md-card>
+</section>

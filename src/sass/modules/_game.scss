@@ -1,0 +1,25 @@
+.game-console-board {
+  width: 90%;
+  text-align: center;
+  margin: 20px auto 0 auto;
+
+  @media screen and (max-width: 720px) {
+    width: 99%;
+
+    .md-button.md-raised {
+      padding: 5px 16px;
+    }
+  }
+}
+
+#add-points-dialog {
+  md-dialog-content {
+    padding: 15px;
+  }
+
+  #add-points-dialog md-input-container {
+    display: block;
+    margin: 10px auto;
+    width: 50%;
+  }
+}

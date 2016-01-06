@@ -1,0 +1,18 @@
+{
+  "name": "Carcassonne Scoreboard",
+  "description": "Carcassonne Scoreboard",
+  "launch_path": "index.html",
+  "icons": {
+    "128": "/images/icon-120x120.png",
+    "144": "images/ms-touch-icon-144x144-precomposed.png",
+    "192": "images/chrome-touch-icon-192x192.png",
+    "512": "images/apple-touch-icon.png"
+  },
+  "developer": {
+    "name": "Andrea Sonny",
+    "url": "https://github.com/andreasonny83"
+  },
+  "installs_allowed_from": ["*"],
+  "default_locale": "en",
+  "chrome": { "navigation": true }
+}

@@ -1,0 +1,30 @@
+page-header {
+  display: block;
+  text-align: center;
+  background-color: $carcassonne-blue;
+  color: $carcassonne-yellow;
+  overflow: auto;
+}
+
+.page-header-sub {
+  background-color: $white;
+  padding: 15px;
+  box-shadow: 0 2px 6px rgba(0,0,0,.2);
+  position: relative;
+  overflow: auto;
+
+  h2 {
+    margin: 0;
+    padding: 20px 0;
+    line-height: 40px;
+    font-size: 24px;
+    text-align: center;
+  }
+}
+
+@media screen and (min-width: 420px) {
+  .page-header-sub {
+    margin-bottom: 40px;
+  }
+
+}

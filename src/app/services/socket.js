@@ -5,10 +5,10 @@
         .module('socket', [])
         .factory('socket', factory);
 
-    factory.$inject = ['$rootScope'];
+    factory.$inject = ['$rootScope', 'serverApp'];
 
     /* @ngInject */
-    function factory($rootScope) {
+    function factory($rootScope, serverApp) {
       // server url
       var socket = io(serverApp.server + ':' + serverApp.port);
 

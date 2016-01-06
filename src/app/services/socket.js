@@ -10,7 +10,7 @@
     /* @ngInject */
     function factory($rootScope) {
       // server url
-      var socket = io('localhost:5000');
+      var socket = io(serverApp.server + ':' + serverApp.port);
 
       function on(eventName, callback) {
         socket.on(eventName, function () {

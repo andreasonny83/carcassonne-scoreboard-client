@@ -15,6 +15,10 @@
       'socket'
     ])
     .config(config)
+    .constant("serverApp", {
+        "server": "http://localhost",
+        "port": "5000"
+    })
     .run(run);
 
   config.$inject = ['$locationProvider', '$routeProvider'];

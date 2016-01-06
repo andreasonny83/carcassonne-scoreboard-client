@@ -8,7 +8,7 @@
 
 Because this repository consists in the client side of the application only, if you want to run the whole application in your own local environment, you will need to download and run the server side first.
 
-### Prepare the locale environment
+### Prepare your local environment
 #### Get the code
 
 First clone this repo to your local machine with:
@@ -42,8 +42,24 @@ If you have correctly installed all the dependencies, you will now be able to ru
 from inside the main `carcassonne-scoreborad-client` folder,
 this command will trigger a gulp task responsible for initiate a local version of the application and open a new tab in your browser to render the `localhost:3000` where the application will be rendered.
 
+### Configure the server side
+
+The default server app is supposed to respond at: `http://localhost:5000` however, if you want to use a different address to host your server app, you can simply configure your `serverApp` with your custom preferences.
+
+** The `serverApp` is located inside `src/app/app.js`. **
+
+    .constant("serverApp", {
+        "server": "http://localhost",
+        "port": "5000"
+    })
+
 
 ## Changelog
+
+### 1.0.2
+- Make the socket service using some ServerApp variable to store the server side address.
+<br>
+2016.01.06
 
 ### 1.0.1
 - First carcassonne-scoreborad-client using Socket.io to communicate to a carcassonne-scoreborad-server built in Node.js

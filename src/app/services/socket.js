@@ -34,9 +34,16 @@
         });
       }
 
+      // function removeAllListeners() {
+      //   for(var i = 0; i < socket.listeners.length; i++) {
+      //     var details = socket.listeners[i];
+      //     socket.removeListener(details.event, details.fn);
+      // }
+
       return {
         on: on,
         emit: emit
+        // removeAllListeners: removeAllListeners
       };
     }
 })();

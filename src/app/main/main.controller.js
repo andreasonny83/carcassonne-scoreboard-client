@@ -68,7 +68,7 @@
 
       socket.on('user:left', function (data) {
         console.log('received: user:left');
-        $mdToast.showSimple('A user left.');
+        // $mdToast.showSimple('A user left.');
       });
 
       socket.on('users:update', function (users) {
@@ -77,6 +77,7 @@
       });
 
       socket.on('game:ready', function (data) {
+        console.log('game ready');
         if ( data.error ) {
           console.log('error.');
           $mdToast.showSimple('Ops! Something went wrong. Please check all the information and try again.');
@@ -87,7 +88,6 @@
           $mdToast.showSimple('Game successfully created. Redirecting into the game...');
         }
         else {
-          console.log('here');
           $mdToast.showSimple('Redirecting into the game...');
         }
 

@@ -9,143 +9,85 @@
 
     /* @ngInject */
     function GameController($scope, $location, $routeParams, $mdToast, $mdDialog, gameType, socket) {
-      $scope.gameId = null;
-      var new_game = {
+      var vm = this,
+          new_game = {
             name: 'New game',
             players: [],
             meeples: ['red', 'green', 'blue', 'yellow', 'black', 'gray'],
-            meeple_available: ['red', 'green', 'blue', 'yellow', 'black', 'gray'],
             max_players: 6
           };
 
-      if (gameType === 'new') {
-        newGame();
-      }
-      else if (gameType === 'setup') {
-        initSetup();
-      }
-      else if (gameType === 'play') {
-        initPlay();
-      }
+      activate();
 
-      // Socket listeners
-      // ================
-      socket.on('game:score_updated', function (logs) {
-        // var game = gameService.getGame();
-        // game.logs = logs;
-        // updateScore();
-      });
-
-      socket.on('game:get', function (game) {
-        console.log(game);
-        console.log('received: game:get');
-        $scope.game = Object.create(game);
-      });
-
-      function newGame() {
-        // new game created
-        console.log('newGame');
-        $scope.game = Object.create(new_game);
+      function activate() {
+        switch (gameType) {
+          case 'new':
+            console.log('newGame');
+            vm.game = new_game;
+            break;
+          case 'setup':
+            console.log('initSetup');
+            vm.game_id = $routeParams.gameID || null;
+            socket.emit('game:get', vm.game_id);
+            break;
+          case 'play':
+            console.log('initPlay');
+            vm.game_id = $routeParams.gameID || null;
+            socket.emit('game:get', vm.game_id);
+            break;
+          default:
+        }
       }
 
-      function initSetup() {
-        console.log('initSetup');
-        $scope.gameId = $routeParams.gameID || null;
-        socket.emit('game:get', $scope.gameId);
-      }
-
-      function initPlay() {
-        console.log('initPlay');
-        $scope.gameId = $routeParams.gameID || null;
-        socket.emit('game:get', $scope.gameId);
-      }
-
-      function addPlayer() {
-        if ( $scope.game.players.length >= $scope.game.max_players ) {
+      vm.addPlayer = function() {
+        if ( vm.game.players.length >= vm.game.max_players ) {
           $mdToast.showSimple('Maximum players reached.');
           return false;
         }
 
-        $scope.game.players.push({
+        vm.game.players.push({
           name: 'Player',
           email: null,
-          // color: assignRndMeeple(),
-          color: 'red',
-          // gravatar: "https://secure.gravatar.com/avatar/" + md5.createHash( "" + Math.random() ) + "?d=identicon&s=150",
-          gravatar: null,
+          color: assignRndMeeple(),
+          gravatar: 'https://secure.gravatar.com/avatar/',
           score: 0
         });
       }
 
-      function removePlayer(key) {
-        if ( $scope.game.players.length > 0 ) {
-          $scope.game.players.splice(key, 1);
+      vm.removePlayer = function(key) {
+        if ( vm.game.players.length > 0 ) {
+          vm.game.players.splice(key, 1);
         }
       }
 
-      function editPlayer(key) {
-        $scope.game.players[key].email_buffer = $scope.game.players[key].email;
-        $scope.game.players[key].name_buffer = $scope.game.players[key].name;
-        $scope.game.players[key].color_buffer = $scope.game.players[key].color;
+      vm.editPlayer = function(key) {
+        vm.game.players[key].email_buffer = vm.game.players[key].email;
+        vm.game.players[key].name_buffer = vm.game.players[key].name;
+        vm.game.players[key].color_buffer = vm.game.players[key].color;
 
-        $scope.game.players[key].editMode = true;
+        vm.game.players[key].editMode = true;
       }
 
-      function saveEdit(key) {
-        if ( $scope.game.players[key].email !== $scope.game.players[key].email_buffer ) {
-          // $scope.game.players[key].gravatar = gameService.getGravatar($scope.game.players[key].email_buffer);
+      vm.saveEdit = function(key) {
+        if ( vm.game.players[key].email !== vm.game.players[key].email_buffer ) {
+          // vm.game.players[key].gravatar = gameService.getGravatar(vm.game.players[key].email_buffer);
         }
-        $scope.game.players[key].email = $scope.game.players[key].email_buffer;
-        $scope.game.players[key].name = $scope.game.players[key].name_buffer;
-        $scope.game.players[key].color = $scope.game.players[key].color_buffer;
+        vm.game.players[key].email = vm.game.players[key].email_buffer;
+        vm.game.players[key].name = vm.game.players[key].name_buffer;
+        vm.game.players[key].color = vm.game.players[key].color_buffer;
 
-        $scope.game.players[key].editMode = false;
+        vm.game.players[key].editMode = false;
       }
 
-      function cancelEdit(key) {
-         $scope.game.players[key].editMode = false;
+      vm.cancelEdit = function(key) {
+       vm.game.players[key].editMode = false;
       }
 
-      function gameReady() {
-        socket.emit('game:ready', {players: $scope.game.players, name: $scope.game.name, game_id: $scope.gameId});
+      vm.startGame = function() {
+        socket.emit('game:start', {game_id: vm.game_id, game: vm.game});
       }
 
-      function addPoints() {
-        showDialog();
-      }
-
-      function fixTable(game) {
-        // add scrollfix class to the table-body in order to limit the logs in the table
-        var table_body = document.getElementById("table-body");
-        if ( game.logs.length >= 2 && table_body.className.indexOf('mobile-scrollfix') === -1 ) {
-          table_body.className = table_body.className + " mobile-scrollfix";
-        }
-        if ( game.logs.length >= 6 && table_body.className.indexOf(' scrollfix') === -1 ) {
-          table_body.className = table_body.className + " scrollfix";
-        }
-
-        // scroll the table-body to the last score
-        table_body.querySelector('.scrollable').scrollTop = table_body.querySelector('.scrollable').scrollHeight;
-      }
-
-      function updateScore() {
-        var game = $scope.game,
-            re = /^\+([0-9]+)/;
-
-        for (var i = 0; i < game.players.length; i++) {
-          game.players[i].score = 0;
-
-          for (var j = 0; j < game.logs.length; j++) {
-            if ( re.test( game.logs[j][i+1].toString() ) ) {
-              game.players[i].score += parseInt(game.logs[j][i+1].toString());
-            }
-          }
-        }
-
-        setTimeout(fixTable, 100, game);
-      }
-
-      function showDialog() {
+      vm.addPoints = function() {
         $mdDialog.show({
           template:
             '<md-dialog id="add-points-dialog">' +
@@ -163,6 +105,10 @@
             '    </md-dialog-actions>' +
             '  </form>' +
             '</md-dialog>',
+          locals: {
+            _game_id: vm.game_id,
+            _game: vm.game
+          },
           controller: DialogController,
           onComplete: function(scope, element, options) {
             document.getElementById('input_points').focus();
@@ -171,55 +117,44 @@
         });
       }
 
-      DialogController.$inject = ['$scope', '$mdDialog'];
+      DialogController.$inject = ['$scope', '$mdDialog', '_game_id', '_game'];
 
-      function DialogController( $scope, $mdDialog ) {
-        // var game = gameService.getGame();
-
+      function DialogController( $scope, $mdDialog, _game_id, _game ) {
         $scope.cancel = function() {
           $mdDialog.hide();
         }
 
-        $scope.addPoints = function(points) {
+        $scope.addPoints = function( points ) {
           if ( ! $scope.ready ) return;
           $scope.ready = false;
 
-          // socket.emit('game:score', {game: game, points:points});
-
+          socket.emit('game:score', {
+            game_id: _game_id,
+            game: _game,
+            points:points
+          });
           $mdDialog.hide();
         }
       }
 
-      function playerSelected() {
-        var i;
-
-        for ( i = 0; i < $scope.game.players.length; i++ ) {
-          if ( $scope.game.players[i].selected ) {
-            return i;
-          }
-        }
-
-        return -1;
-      }
-
-      function nextPlayer() {
+      vm.nextPlayer = function() {
         var player = playerSelected();
 
-        $scope.game.players[player].selected = false;
+        vm.game.players[player].selected = false;
 
-        if ( player < $scope.game.players.length - 1 ) {
-          $scope.game.players[player+1].selected = true;
+        if ( player < vm.game.players.length - 1 ) {
+          vm.game.players[player+1].selected = true;
         }
         else {
-          $scope.game.players[0].selected = true;
+          vm.game.players[0].selected = true;
         }
       }
 
-      function manualEdit() {
+      vm.manualEdit = function() {
         console.log('manualEdit');
       }
 
-      function deleteGame() {
+      vm.deleteGame = function() {
         var alert = $mdDialog.confirm({
             title: 'Delete current game',
             textContent: 'Are you sure you want to delete this game?',
@@ -232,20 +167,102 @@
         });
       }
 
-      var vm = {
-        // getGravatar: gameService.getGravatar,
-        addPlayer: addPlayer,
-        removePlayer: removePlayer,
-        editPlayer: editPlayer,
-        saveEdit: saveEdit,
-        cancelEdit: cancelEdit,
-        gameReady: gameReady,
-        deleteGame: deleteGame,
-        addPoints: addPoints,
-        nextPlayer: nextPlayer,
-        manualEdit: manualEdit
-      };
+      /**
+       * add the scroll to the table when the log is too long
+       * fix the table to make it responsive
+       * scroll the table to the bottom to display the last log
+       *
+       * @param  [Object] game
+       */
+      function fixTable(game) {
+        // add scrollfix class to the table-body in order to limit the logs in the table
+        var table_body = document.getElementById("table-body");
+        if ( game.logs.length >= 2 && table_body.className.indexOf('mobile-scrollfix') === -1 ) {
+          table_body.className = table_body.className + " mobile-scrollfix";
+        }
+        if ( game.logs.length >= 6 && table_body.className.indexOf(' scrollfix') === -1 ) {
+          table_body.className = table_body.className + " scrollfix";
+        }
 
-      Object.assign(this, vm);
+        // scroll the table-body to the last score
+        table_body.querySelector('.scrollable').scrollTop = table_body.querySelector('.scrollable').scrollHeight;
+      }
+
+      /**
+       * updateScore
+       */
+      function updateScore() {
+        var game = vm.game,
+            re = /^\+([0-9]+)/;
+
+        for (var i = 0; i < game.players.length; i++) {
+          game.players[i].score = 0;
+
+          for (var j = 0; j < game.logs.length; j++) {
+            if ( re.test( game.logs[j][i+1].toString() ) ) {
+              game.players[i].score += parseInt(game.logs[j][i+1].toString());
+            }
+          }
+        }
+
+        setTimeout(fixTable, 100, game);
+      }
+
+      /**
+       * Return the selected player
+       */
+      function playerSelected() {
+        var i;
+
+        for ( i = 0; i < vm.game.players.length; i++ ) {
+          if ( vm.game.players[i].selected ) {
+            return i;
+          }
+        }
+
+        return -1;
+      }
+
+      /**
+       * return a random meeple
+       */
+      function assignRndMeeple() {
+        var index = Math.floor( Math.random() * vm.game.meeples.length ),
+            color = vm.game.meeples[index];
+
+        return color;
+      }
+
+      // Socket listeners
+      // ================
+      //
+      // $scope.$on('$destroy', function (event) {
+      //   console.log('listener destroyed');
+      //   socket.removeAllListeners();
+      // });
+
+      socket.on('game:get', function (data) {
+        console.log('received: game:get');
+        if ( data.error || ! data.game ) {
+          $mdToast.showSimple('The game you\'re trying to reach is missing. Redirecting to the home page...');
+          setTimeout(function(){
+            $location.path('#/');
+          }, 1500);
+        }
+        vm.game = data.game;
+        updateScore();
+      });
+
+      socket.on('game:update', function (data) {
+        console.log('received: game:update on: ' + data.game_id);
+        console.log('user game id: ' + vm.game_id);
+        if ( data.game_id === vm.game_id ) {
+          vm.game = data.game;
+          $mdToast.showSimple('Game information updated.');
+          updateScore();
+        }
+      });
+
+      // ================
     }
 })();

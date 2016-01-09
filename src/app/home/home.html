@@ -3,13 +3,19 @@
 </div>
 
 <md-content layout="row" layout-sm="column" layout-align="center center">
-  <h3>Users connected: {{mainCtrl.users.online}}</h3>
+  <h3>Users connected: {{mainCtrl.app.users_online}}</h3>
+</md-content>
+<md-content layout="row" layout-sm="column" layout-align="center center">
+  <h3>Games created so far: {{mainCtrl.app.games}}</h3>
 </md-content>
 
 <md-content layout="row" layout-sm="column" layout-align="center center">
-
   <section>
-    <md-button class="md-raised cs-button-primary cs-button-xl" ng-click="homeCtrl.newGame()">Start a new game</md-button>
+    <md-content layout="row" layout-align="center center">
+      <md-button class="md-raised cs-button-primary cs-button-xl" ng-click="homeCtrl.newGame()">Start a new game</md-button>
+    </md-content>
+    <md-content layout="row" layout-align="center center">
+      <md-button class="md-raised cs-button-primary cs-button-xl" ng-click="homeCtrl.joinGame()">Join a game</md-button>
+  </md-content>
   </section>
-
 </md-content>

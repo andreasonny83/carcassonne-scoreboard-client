@@ -20,6 +20,11 @@
       activate();
 
       function activate() {
+        vm.sharebuttonOpen = true;
+        vm.player_selected = 0;
+        vm.new_game        = true;
+        vm.undoDisabled    = vm.game && vm.game.logs && vm.game.logs.length > 0 ? false : true;
+
         switch (gameType) {
           case 'new':
             console.log('newGame');
@@ -27,16 +32,29 @@
             break;
           case 'setup':
             console.log('initSetup');
-            vm.game_id = $routeParams.gameID || null;
+            vm.game_id  = vm.game_id_r = $routeParams.gameID || null;
+            vm.new_game = false;
+
             socket.emit('game:get', vm.game_id);
             break;
           case 'play':
             console.log('initPlay');
-            vm.game_id = $routeParams.gameID || null;
+            vm.game_id  = vm.game_id_r = $routeParams.gameID || null;
+            vm.new_game = false;
+
+            hideShareButton();
             socket.emit('game:get', vm.game_id);
+            hideShareButton();
             break;
           default:
         }
+      }
+
+      function hideShareButton() {
+        vm.sharebuttonOpen = true;
+        setTimeout(function() {
+          vm.sharebuttonOpen = false;
+        }, 100);
       }
 
       vm.addPlayer = function() {
@@ -60,98 +78,22 @@
         }
       }
 
-      vm.editPlayer = function(key) {
-        vm.game.players[key].email_buffer = vm.game.players[key].email;
-        vm.game.players[key].name_buffer = vm.game.players[key].name;
-        vm.game.players[key].color_buffer = vm.game.players[key].color;
-
-        vm.game.players[key].editMode = true;
-      }
-
-      vm.saveEdit = function(key) {
-        if ( vm.game.players[key].email !== vm.game.players[key].email_buffer ) {
-          // vm.game.players[key].gravatar = gameService.getGravatar(vm.game.players[key].email_buffer);
-        }
-        vm.game.players[key].email = vm.game.players[key].email_buffer;
-        vm.game.players[key].name = vm.game.players[key].name_buffer;
-        vm.game.players[key].color = vm.game.players[key].color_buffer;
-
-        vm.game.players[key].editMode = false;
-      }
-
-      vm.cancelEdit = function(key) {
-       vm.game.players[key].editMode = false;
-      }
-
       vm.startGame = function() {
         socket.emit('game:start', {game_id: vm.game_id, game: vm.game});
       }
 
-      vm.addPoints = function() {
-        $mdDialog.show({
-          template:
-            '<md-dialog id="add-points-dialog">' +
-            '  <form ng-submit="addPoints(AddPoints.points)">' +
-            '    <md-dialog-content>' +
-            '      <h3>Add points</h3>' +
-            '      <md-input-container>' +
-            '        <label>points</label>' +
-            '        <input id="input_points" ng-model="AddPoints.points" type="number" min="0" max="99" required>' +
-            '      </md-input-container>' +
-            '    </md-dialog-content>' +
-            '    <md-dialog-actions>' +
-            '      <md-button ng-click="cancel()" type="button">Cancel</md-button>' +
-            '      <md-button type="submit" class="md-primary">Add</md-button>' +
-            '    </md-dialog-actions>' +
-            '  </form>' +
-            '</md-dialog>',
-          locals: {
-            _game_id: vm.game_id,
-            _game: vm.game
-          },
-          controller: DialogController,
-          onComplete: function(scope, element, options) {
-            document.getElementById('input_points').focus();
-            scope.ready = true;
-          }
-        });
-      }
-
-      DialogController.$inject = ['$scope', '$mdDialog', '_game_id', '_game'];
-
-      function DialogController( $scope, $mdDialog, _game_id, _game ) {
-        $scope.cancel = function() {
-          $mdDialog.hide();
-        }
-
-        $scope.addPoints = function( points ) {
-          if ( ! $scope.ready ) return;
-          $scope.ready = false;
-
-          socket.emit('game:score', {
-            game_id: _game_id,
-            game: _game,
-            points:points
-          });
-          $mdDialog.hide();
-        }
-      }
-
       vm.nextPlayer = function() {
-        var player = playerSelected();
-
-        vm.game.players[player].selected = false;
-
-        if ( player < vm.game.players.length - 1 ) {
-          vm.game.players[player+1].selected = true;
+        if ( vm.player_selected < vm.game.players.length - 1 ) {
+          vm.player_selected += 1;
         }
         else {
-          vm.game.players[0].selected = true;
+          vm.player_selected = 0;
         }
       }
 
-      vm.manualEdit = function() {
-        console.log('manualEdit');
+      vm.undo = function() {
+        console.log('undo');
+        socket.emit('game:undo', {game_id: vm.game_id});
       }
 
       vm.deleteGame = function() {
@@ -163,7 +105,47 @@
           });
 
         $mdDialog.show( alert ).then(function() {
-          $location.path('#/');
+          $location.path('/');
+        });
+      }
+
+      vm.goTo = function(path) {
+        $location.path(path);
+      }
+
+      vm.selectID = function($event) {
+        $event.target.setSelectionRange(0, $event.target.value.length);
+      }
+
+      vm.share = function() {
+        $mdDialog.show({
+          templateUrl: 'app/dialogs/share.html',
+          locals: {
+            _game_id: vm.game_id
+          },
+          controller: 'ShareDialogController',
+          controllerAs: 'shareCtrl',
+          onComplete: function(scope, element, options) {
+            document.getElementById('input_email').focus();
+            scope.ready = true;
+          }
+        });
+      }
+
+      vm.addPoints = function() {
+        $mdDialog.show({
+          templateUrl: 'app/dialogs/points.html',
+          locals: {
+            _game_id: vm.game_id,
+            _game: vm.game,
+            _player_selected: vm.player_selected
+          },
+          controller: 'PointsController',
+          controllerAs: 'pointsCtrl',
+          onComplete: function(scope, element, options) {
+            document.getElementById('input_points').focus();
+            scope.ready = true;
+          }
         });
       }
 
@@ -177,19 +159,21 @@
       function fixTable(game) {
         // add scrollfix class to the table-body in order to limit the logs in the table
         var table_body = document.getElementById("table-body");
-        if ( game.logs.length >= 2 && table_body.className.indexOf('mobile-scrollfix') === -1 ) {
+        if ( table_body && game.logs.length >= 2 && table_body.className.indexOf('mobile-scrollfix') === -1 ) {
           table_body.className = table_body.className + " mobile-scrollfix";
         }
-        if ( game.logs.length >= 6 && table_body.className.indexOf(' scrollfix') === -1 ) {
+        if ( table_body && game.logs.length >= 6 && table_body.className.indexOf(' scrollfix') === -1 ) {
           table_body.className = table_body.className + " scrollfix";
         }
 
         // scroll the table-body to the last score
-        table_body.querySelector('.scrollable').scrollTop = table_body.querySelector('.scrollable').scrollHeight;
+        if ( table_body ) {
+          table_body.querySelector('.scrollable').scrollTop = table_body.querySelector('.scrollable').scrollHeight;
+        }
       }
 
       /**
-       * updateScore
+       * Update the player's scores based on the game log
        */
       function updateScore() {
         var game = vm.game,
@@ -199,6 +183,8 @@
           game.players[i].score = 0;
 
           for (var j = 0; j < game.logs.length; j++) {
+            if ( ! game.logs[j][i+1] ) continue;
+
             if ( re.test( game.logs[j][i+1].toString() ) ) {
               game.players[i].score += parseInt(game.logs[j][i+1].toString());
             }
@@ -206,21 +192,6 @@
         }
 
         setTimeout(fixTable, 100, game);
-      }
-
-      /**
-       * Return the selected player
-       */
-      function playerSelected() {
-        var i;
-
-        for ( i = 0; i < vm.game.players.length; i++ ) {
-          if ( vm.game.players[i].selected ) {
-            return i;
-          }
-        }
-
-        return -1;
       }
 
       /**
@@ -246,7 +217,7 @@
         if ( data.error || ! data.game ) {
           $mdToast.showSimple('The game you\'re trying to reach is missing. Redirecting to the home page...');
           setTimeout(function(){
-            $location.path('#/');
+            $location.path('/');
           }, 1500);
         }
         vm.game = data.game;
@@ -261,6 +232,11 @@
           $mdToast.showSimple('Game information updated.');
           updateScore();
         }
+        else if (data.error) {
+          $mdToast.showSimple('Cannot update the current game. Please try again.');
+        }
+
+        vm.undoDisabled = vm.game.logs.length > 0 ? false : true;
       });
 
       // ================

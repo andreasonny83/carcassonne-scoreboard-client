@@ -1,0 +1,15 @@
+<md-dialog id="add-points-dialog" class="dialogBox">
+  <form ng-submit="pointsCtrl.addPoints(pointsCtrl.points)">
+    <md-dialog-content>
+      <h3>Add points to player:<br/>{{pointsCtrl.player_name}}</h3>
+      <md-input-container>
+        <label>points</label>
+        <input id="input_points" ng-model="pointsCtrl.points" type="number" min="0" max="99" required>
+      </md-input-container>
+    </md-dialog-content>
+    <md-dialog-actions>
+      <md-button ng-click="pointsCtrl.cancel()" type="button">Cancel</md-button>
+      <md-button type="submit" class="md-primary">Add</md-button>
+    </md-dialog-actions>
+  </form>
+</md-dialog>

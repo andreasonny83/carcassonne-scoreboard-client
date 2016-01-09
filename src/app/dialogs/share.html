@@ -1,0 +1,15 @@
+<md-dialog id="share-dialog" class="dialogBox">
+  <form ng-submit="shareCtrl.shareLink(shareCtrl.shareDialogEmail)">
+    <md-dialog-content>
+      <h3>Share this game with:</h3>
+      <md-input-container>
+        <label>E-Mail</label>
+        <input ng-disabled="shareCtrl.disable_elements" class="shareLink-element" id="input_email" ng-model="shareCtrl.shareDialogEmail" type="email" required>
+      </md-input-container>
+    </md-dialog-content>
+    <md-dialog-actions>
+      <md-button ng-disabled="shareCtrl.disable_elements" ng-click="shareCtrl.cancel()" type="button">Cancel</md-button>
+      <md-button ng-disabled="shareCtrl.disable_elements" type="submit" class="md-primary">Add</md-button>
+    </md-dialog-actions>
+  </form>
+</md-dialog>

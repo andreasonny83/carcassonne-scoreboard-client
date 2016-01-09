@@ -12,14 +12,29 @@
   }
 }
 
-#add-points-dialog {
-  md-dialog-content {
-    padding: 15px;
+#gameID {
+  min-width: 235px;
+}
+
+#hangouts-container {
+  margin: 6px 8px;
+  text-align: center;
+}
+
+@media screen and (max-width: 720px) {
+  md-card md-card-content, md-list-item.md-no-proxy {
+    position: relative;
   }
 
-  #add-points-dialog md-input-container {
-    display: block;
-    margin: 10px auto;
-    width: 50%;
+  md-list-item .md-secondary {
+    position: absolute;
+    height: 100%;
+    right: 0;
+
+    button {
+      position: absolute;
+      bottom: 10px;
+      right: 0;
+    }
   }
 }

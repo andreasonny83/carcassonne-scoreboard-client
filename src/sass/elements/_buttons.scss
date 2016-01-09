@@ -23,23 +23,10 @@
 /*
  * cs-button-back
  */
-.cs-button-back {
-  margin-top: 20px;
-  padding: 2px 25px;
-  position: absolute;
-  top: 15px;
-  left: 15px;
-  font-size: 16px;
-  color : rgb(49, 46, 46);
-
-  @media screen and (max-width: 720px) {
-    margin: 0 auto;
-    position: static;
-    display: block;
-  }
-}
+.cs-button-back,
 .md-raised.cs-button-back:not([disabled]),
 .md-raised.cs-button-back:not([disabled]):hover {
+  color : rgb(49, 46, 46);
   background-color: $carcassonne-yellow;
 }
 .cs-button-back[disabled] {
@@ -48,25 +35,57 @@
 }
 
 /* blue buttons */
-.md-button.md-raised.blue {
-  background: $carcassonne-blue;
-  color: #DDD;
-  padding: 5px 25px;
-}
+.md-button.md-raised.blue,
 .md-button.md-raised.blue:not([disabled]),
 .md-button.md-raised.blue:not([disabled]):hover {
+  padding: 5px 25px;
   background: $carcassonne-blue;
   color: #DDD;
 }
 
 /* red buttons */
-.md-button.md-raised.red {
-  background: $carcassonne-red;
-  color: #EEE;
-  padding: 5px 25px;
-}
+.md-button.md-raised.red,
 .md-button.md-raised.red:not([disabled]),
 .md-button.md-raised.red:not([disabled]):hover {
+  padding: 5px 25px;
   background: $carcassonne-red;
   color: #EEE;
+}
+
+/* Share buttons */
+#share-button {
+  .md-button.md-fab {
+    &.cs-share,
+    &.cs-share:not([disabled]),
+    &.cs-share:not([disabled]):hover {
+      width: 46px;
+      height: 46px;
+      background-color: $carcassonne-blue;
+
+      .icon-share {
+        color: #fff;
+        font-size: 26px;
+        line-height: 46px;
+      }
+    }
+
+  }
+  .md-button.md-raised.md-mini {
+    background-color: $carcassonne-yellow;
+    margin: 3px 6px;
+    width: 36px;
+    height: 36px;
+    line-height: 36px;
+
+    .icon {
+      color: rgba(0,0,0,.6);
+      font-size: 21px;
+      line-height: 36px;
+    }
+  }
+}
+
+/* Alert button */
+.md-button.cs-alert {
+  color: $carcassonne-red-light;
 }

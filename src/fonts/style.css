@@ -1,22 +1,27 @@
 /* Icons */
 @font-face {
-	font-family: 'myfont';
-	src:url('myfont/myfont.eot');
-	src:url('myfont/myfont.eot') format('embedded-opentype'),
-		url('myfont/myfont.ttf') format('truetype'),
-		url('myfont/myfont.woff') format('woff'),
-		url('myfont/myfont.svg') format('svg');
+	font-family: 'carcassonne-scoreboard-font';
+	src:url('carcassonne-scoreboard-font/carcassonne-scoreboard-font.eot');
+	src:url('carcassonne-scoreboard-font/carcassonne-scoreboard-font.eot') format('embedded-opentype'),
+		url('carcassonne-scoreboard-font/carcassonne-scoreboard-font.ttf') format('truetype'),
+		url('carcassonne-scoreboard-font/carcassonne-scoreboard-font.woff') format('woff'),
+		url('carcassonne-scoreboard-font/carcassonne-scoreboard-font.svg') format('svg');
 	font-weight: normal;
 	font-style: normal;
 }
 
 i {
-  font-size: 72px;
-  color: black;
+  font-size: 60px;
+  color: #333;
+}
+
+.char {
+	display: inline-block;
+	margin: 20px 15px 5px;
 }
 
 .icon::before, .icon::after {
-	font-family: 'myfont';
+	font-family: 'carcassonne-scoreboard-font';
 	speak: none;
 	font-size:100%;
 	font-style: normal;
@@ -28,10 +33,14 @@ i {
 	-moz-osx-font-smoothing: grayscale;
 }
 
-.icon-meeple::after {content: "\EA03";}
-
 .icon-cc::after {
   content: "\EA01";
   margin-right: -15px;
 }
 .icon-a::after {content: "\EA02";}
+.icon-meeple::after {content: "\EA03";}
+.icon-menu::after {content: "\EA04";}
+.icon-share::after {content: "\EA05";}
+.icon-email::after {content: "\EA06";}
+.icon-facebook::after {content: "\EA07";}
+.icon-hangouts::after {content: "\EA08";}

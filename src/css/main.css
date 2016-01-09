@@ -430,9 +430,13 @@ md-toast {
   position: fixed;
 }
 
+.layout-row {
+  overflow: hidden;
+}
+
 /* custom fonticon rules */
 .icon {
-  font-family: 'myfont';
+  font-family: 'carcassonne-scoreboard-font';
   font-size: 40px;
   color: #EEE;
 }
@@ -469,48 +473,19 @@ md-toast {
   .layout-padding > *, .layout-padding > .flex {
     margin: 0;
   }
-  md-card md-card-content, md-list-item.md-no-proxy {
-    display: block;
-    position: relative;
-    padding: 0;
-    overflow: auto;
-  }
-  .card .users-list .face {
-    display: none;
-  }
-  .card .users-list .secondary-button-padding .md-list-item-text {
-    padding: 10px 0 10px 10px !important;
-    display: block;
-    width: calc(100% - 110px);
-    float: left;
-  }
-  .card .users-list .md-list-item {
-    padding: 0 !important;
-    position: initial !important;
-  }
-  md-list-item .md-secondary {
-    position: initial !important;
-    -webkit-transform: none;
-    transform: none;
-    float: left;
-    width: 100px;
-    margin: 0;
-    padding: 0;
-    text-align: end;
-  }
 }
 
 /* Icons */
 @font-face {
-  font-family: 'myfont';
-  src: url("../fonts/myfont/myfont.eot");
-  src: url("../fonts/myfont/myfont.eot") format("embedded-opentype"), url("../fonts/myfont/myfont.ttf") format("truetype"), url("../fonts/myfont/myfont.woff") format("woff"), url("../fonts/myfont/myfont.svg") format("svg");
+  font-family: 'carcassonne-scoreboard-font';
+  src: url("../fonts/carcassonne-scoreboard-font/carcassonne-scoreboard-font.eot");
+  src: url("../fonts/carcassonne-scoreboard-font/carcassonne-scoreboard-font.eot") format("embedded-opentype"), url("../fonts/carcassonne-scoreboard-font/carcassonne-scoreboard-font.ttf") format("truetype"), url("../fonts/carcassonne-scoreboard-font/carcassonne-scoreboard-font.woff") format("woff"), url("../fonts/carcassonne-scoreboard-font/carcassonne-scoreboard-font.svg") format("svg");
   font-weight: normal;
   font-style: normal;
 }
 
 .icon::before, .icon::after {
-  font-family: 'myfont';
+  font-family: 'carcassonne-scoreboard-font';
   speak: none;
   font-size: 100%;
   font-style: normal;
@@ -533,6 +508,26 @@ md-toast {
 
 .icon.icon-a::after {
   content: "\EA02";
+}
+
+.icon-menu::after {
+  content: "\EA04";
+}
+
+.icon-share::after {
+  content: "\EA05";
+}
+
+.icon-email::after {
+  content: "\EA06";
+}
+
+.icon-facebook::after {
+  content: "\EA07";
+}
+
+.icon-hangouts::after {
+  content: "\EA08";
 }
 
 /*
@@ -564,26 +559,10 @@ md-toast {
 /*
  * cs-button-back
  */
-.cs-button-back {
-  margin-top: 20px;
-  padding: 2px 25px;
-  position: absolute;
-  top: 15px;
-  left: 15px;
-  font-size: 16px;
-  color: #312e2e;
-}
-
-@media screen and (max-width: 720px) {
-  .cs-button-back {
-    margin: 0 auto;
-    position: static;
-    display: block;
-  }
-}
-
+.cs-button-back,
 .md-raised.cs-button-back:not([disabled]),
 .md-raised.cs-button-back:not([disabled]):hover {
+  color: #312e2e;
   background-color: #fccd25;
 }
 
@@ -593,29 +572,69 @@ md-toast {
 }
 
 /* blue buttons */
-.md-button.md-raised.blue {
-  background: #1f62b0;
-  color: #DDD;
-  padding: 5px 25px;
-}
-
+.md-button.md-raised.blue,
 .md-button.md-raised.blue:not([disabled]),
 .md-button.md-raised.blue:not([disabled]):hover {
+  padding: 5px 25px;
   background: #1f62b0;
   color: #DDD;
 }
 
 /* red buttons */
-.md-button.md-raised.red {
-  background: #DC3C3C;
-  color: #EEE;
-  padding: 5px 25px;
-}
-
+.md-button.md-raised.red,
 .md-button.md-raised.red:not([disabled]),
 .md-button.md-raised.red:not([disabled]):hover {
-  background: #DC3C3C;
+  padding: 5px 25px;
+  background: #AD3C3C;
   color: #EEE;
+}
+
+/* Share buttons */
+#share-button .md-button.md-fab.cs-share, #share-button .md-button.md-fab.cs-share:not([disabled]), #share-button .md-button.md-fab.cs-share:not([disabled]):hover {
+  width: 46px;
+  height: 46px;
+  background-color: #1f62b0;
+}
+
+#share-button .md-button.md-fab.cs-share .icon-share, #share-button .md-button.md-fab.cs-share:not([disabled]) .icon-share, #share-button .md-button.md-fab.cs-share:not([disabled]):hover .icon-share {
+  color: #fff;
+  font-size: 26px;
+  line-height: 46px;
+}
+
+#share-button .md-button.md-raised.md-mini {
+  background-color: #fccd25;
+  margin: 3px 6px;
+  width: 36px;
+  height: 36px;
+  line-height: 36px;
+}
+
+#share-button .md-button.md-raised.md-mini .icon {
+  color: rgba(0, 0, 0, 0.6);
+  font-size: 21px;
+  line-height: 36px;
+}
+
+/* Alert button */
+.md-button.cs-alert {
+  color: #EA4646;
+}
+
+.dialogBox md-dialog-content {
+  padding: 15px;
+}
+
+#add-points-dialog md-input-container {
+  display: block;
+  margin: 10px auto;
+  width: 50%;
+}
+
+#join-game-dialog md-input-container {
+  display: block;
+  margin: 30px auto 0;
+  min-width: 200px;
 }
 
 page-header {
@@ -640,12 +659,6 @@ page-header {
   line-height: 40px;
   font-size: 24px;
   text-align: center;
-}
-
-@media screen and (min-width: 420px) {
-  .page-header-sub {
-    margin-bottom: 40px;
-  }
 }
 
 .footer {
@@ -681,25 +694,33 @@ page-header {
   }
 }
 
-#add-points-dialog md-dialog-content {
-  padding: 15px;
+#gameID {
+  min-width: 235px;
 }
 
-#add-points-dialog #add-points-dialog md-input-container {
-  display: block;
-  margin: 10px auto;
-  width: 50%;
+#hangouts-container {
+  margin: 6px 8px;
+  text-align: center;
+}
+
+@media screen and (max-width: 720px) {
+  md-card md-card-content, md-list-item.md-no-proxy {
+    position: relative;
+  }
+  md-list-item .md-secondary {
+    position: absolute;
+    height: 100%;
+    right: 0;
+  }
+  md-list-item .md-secondary button {
+    position: absolute;
+    bottom: 10px;
+    right: 0;
+  }
 }
 
 .card .section-title {
   text-align: center;
-}
-
-.card .users-list .face {
-  border-radius: 30px;
-  border: 1px solid #ddd;
-  width: 48px;
-  margin: 16px;
 }
 
 .card .users-list .input-container {
@@ -708,21 +729,8 @@ page-header {
   min-width: 250px;
 }
 
-.card .users-list .input-container .md-errors-spacer {
-  display: none;
-}
-
-.card .users-list .secondary-button-padding .md-list-item-text {
-  padding-right: 260px;
-}
-
 .card .users-list .md-list-item {
-  font-family: 'myfont';
-  padding-right: 200px;
-  position: absolute;
-  right: 40px;
-  bottom: calc(50% - 20px);
-  height: 44px;
+  font-family: 'carcassonne-scoreboard-font';
   line-height: 40px;
 }
 

@@ -15,8 +15,9 @@
     function MainController(CONSTANTS, $http, $mdToast, socket, $location) {
       var vm = this;
 
-      vm.users = {
-        online: '-'
+      vm.app = {
+        users_online: '-',
+        games: '-'
       };
 
       function setCookie(cname, cvalue, exhours) {
@@ -71,9 +72,10 @@
         // $mdToast.showSimple('A user left.');
       });
 
-      socket.on('users:update', function (users) {
-        console.log('received: users:update');
-        vm.users.online = users;
+      socket.on('app:update', function (data) {
+        console.log('received: app:update');
+        vm.app.users_online = data.users;
+        vm.app.games = data.games;
       });
 
       socket.on('game:ready', function (data) {

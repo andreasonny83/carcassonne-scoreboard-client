@@ -1,0 +1,15 @@
+<md-dialog id="join-game-dialog" class="dialogBox">
+  <form ng-submit="joinCtrl.joinGame(joinCtrl.game_uid)">
+    <md-dialog-content>
+      <h3>Enter the game id:</h3>
+      <md-input-container>
+        <label>Game id</label>
+        <input id="join_game_uid" ng-model="joinCtrl.game_uid" type="text" required>
+      </md-input-container>
+    </md-dialog-content>
+    <md-dialog-actions>
+      <md-button ng-click="joinCtrl.cancel()" type="button">Cancel</md-button>
+      <md-button type="submit" class="md-primary">Join</md-button>
+    </md-dialog-actions>
+  </form>
+</md-dialog>

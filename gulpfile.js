@@ -84,8 +84,8 @@ gulp.task('minify-html', function() {
 // copy fonts
 gulp.task('fonts', function() {
   gulp
-    .src(['./src/fonts/myfont/*.*'])
-    .pipe(gulp.dest('./_build/fonts/myfont'));
+    .src(['./src/fonts/carcassonne-scoreboard-font/*.*'])
+    .pipe(gulp.dest('./_build/fonts/carcassonne-scoreboard-font'));
 });
 
 // copy base files
@@ -187,9 +187,9 @@ gulp.task('iconfonts', function() {
 
   return gulp.src(['./src/assets/icons/*.svg'])
     .pipe(iconfont({
-      fontName: 'myfont', // required
+      fontName: 'carcassonne-scoreboard-font', // required
       appendUnicode: true, // recommended option
-      // normalize: true,
+      normalize: true,
       // fontHeight: 1001,
       formats: ['svg', 'ttf', 'eot', 'woff', 'woff2'], // default, 'woff2' and 'svg' are available
       // timestamp: runTimestamp, // recommended to get consistent builds when watching files
@@ -198,11 +198,7 @@ gulp.task('iconfonts', function() {
         // CSS templating, e.g.
         console.log(glyphs, options);
       })
-    .pipe(gulp.dest([
-      './src/fonts/myfont',
-      './src/_build/fonts/myfont'
-    ]
-    ));
+    .pipe(gulp.dest('./src/fonts/carcassonne-scoreboard-font'));
 });
 
 // default task to be run with `gulp` command

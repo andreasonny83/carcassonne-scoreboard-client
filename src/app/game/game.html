@@ -1,5 +1,10 @@
 <div class="page-header-sub">
-  <md-button class="md-raised cs-button-back" ng-href="#/">Back</md-button>
+  <md-content>
+    <section layout="row" layout-align="start start" layout-align-sm="center center" layout-wrap>
+      <md-button flex-xs="100" flex-sm="auto" flex-md="nogrow" class="md-raised cs-button-back" ng-click="gameCtrl.goTo('/')">Home</md-button>
+      <md-button flex-xs="100" flex-sm="auto" flex-md="nogrow" class="md-raised cs-button-back" ng-hide="{{gameCtrl.new_game}}" ng-click="gameCtrl.startGame()">Resume</md-button>
+    </section>
+  </md-content>
   <h2 class="home">{{gameCtrl.game.name}}</h2>
 </div>
 
@@ -28,25 +33,20 @@
 
         <!-- User list -->
         <md-list-item class="md-3-line md-no-proxy secondary-button-padding md-with-secondary" ng-repeat="(key, player) in gameCtrl.game.players">
-          <img ng-src="{{player.gravatar}}" class="face" alt="{{player.name}}" ng-hide="player.editMode">
-
-          <div class="md-list-item-text" list-item-editable>
-            <h3 ng-hide="player.editMode">{{player.name}}</h3>
-            <md-input-container class="input-container" ng-show="player.editMode">
+          <div class="md-list-item-text">
+            <md-input-container class="input-container">
               <label>Player name</label>
-              <input ng-model="player.name_buffer">
+              <input ng-model="player.name">
             </md-input-container>
 
-            <h4 ng-hide="player.editMode">{{player.email}}</h4>
-            <md-input-container class="input-container" ng-show="player.editMode">
+            <md-input-container class="input-container">
               <label>Player email</label>
-              <input ng-model="player.email_buffer">
+              <input ng-model="player.email">
             </md-input-container>
 
-            <p ng-hide="player.editMode">{{player.color}}</p>
-            <md-input-container class="input-container" ng-show="player.editMode">
+            <md-input-container class="input-container">
               <label>Player color</label>
-              <md-select ng-model="player.color_buffer">
+              <md-select ng-model="player.color">
                 <md-option ng-repeat="meeple in gameCtrl.game.meeples" value="{{meeple}}">
                   {{meeple}}
                 </md-option>
@@ -54,20 +54,12 @@
             </md-input-container>
 
             <div class="md-list-item">
-              <i class="icon icon-meeple {{player.color}}" ng-hide="player.editMode"></i>
-              <i class="icon icon-meeple {{player.color_buffer}}" ng-show="player.editMode"></i>
+              <i class="icon icon-meeple {{player.color}}"></i>
             </div>
           </div>
 
-
-          <div ng-hide="player.editMode" class="md-secondary">
-            <md-button ng-click="gameCtrl.editPlayer(key)">Edit</md-button>
-            <md-button ng-click="gameCtrl.removePlayer(key)">Remove</md-button>
-          </div>
-
-          <div ng-show="player.editMode" class="md-secondary">
-            <md-button ng-click="gameCtrl.saveEdit(key)">Ok</md-button>
-            <md-button ng-click="gameCtrl.cancelEdit(key)">Cancel</md-button>
+          <div class="md-secondary">
+            <md-button class="cs-alert" ng-click="gameCtrl.removePlayer(key)">Remove</md-button>
           </div>
 
           <md-divider></md-divider>
@@ -80,8 +72,9 @@
     </md-card-content>
 
     <md-card-actions layout="row" layout-align="end center">
-      <md-button ng-click="gameCtrl.deleteGame()">Delete game</md-button>
-      <md-button ng-click="gameCtrl.startGame()">Start Game</md-button>
+      <md-button class="cs-alert" ng-click="gameCtrl.deleteGame()">Delete game</md-button>
+      <md-button ng-hide="{{gameCtrl.new_game}}" ng-click="gameCtrl.startGame()">Resume Game</md-button>
+      <md-button ng-show="{{gameCtrl.new_game}}" ng-click="gameCtrl.startGame()">Start Game</md-button>
     </md-card-actions>
   </md-card>
 </section>

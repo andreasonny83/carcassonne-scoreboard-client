@@ -8,9 +8,13 @@ md-toast {
   position: fixed;
 }
 
+.layout-row {
+  overflow: hidden;
+}
+
 /* custom fonticon rules */
 .icon {
-  font-family: 'myfont';
+  font-family: 'carcassonne-scoreboard-font';
   font-size: 40px;
   color: #EEE;
 
@@ -40,41 +44,7 @@ md-toast {
     margin: 0;
   }
 
-  .layout-padding>*, .layout-padding>.flex {
+  .layout-padding > *, .layout-padding > .flex {
     margin: 0;
-  }
-
-  md-card md-card-content, md-list-item.md-no-proxy {
-    display: block;
-    position: relative;
-    padding: 0;
-    overflow: auto;
-  }
-
-  .card .users-list .face {
-    display: none;
-  }
-
-  .card .users-list .secondary-button-padding .md-list-item-text {
-    padding: 10px 0 10px 10px!important;
-    display: block;
-    width: calc(100% - 110px);
-    float: left;
-  }
-
-  .card .users-list .md-list-item {
-    padding: 0!important;
-    position: initial!important;
-  }
-
-  md-list-item .md-secondary {
-    position: initial!important;
-    -webkit-transform: none;
-    transform: none;
-    float: left;
-    width: 100px;
-    margin: 0;
-    padding: 0;
-    text-align: end;
   }
 }

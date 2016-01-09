@@ -1,18 +1,30 @@
 (function() {
-    'use strict';
+  'use strict';
 
-    angular
-        .module('app')
-        .controller('HomeController', HomeController);
+  angular
+    .module('app')
+    .controller('HomeController', HomeController);
 
-    HomeController.$inject = ['$location'];
+  HomeController.$inject = ['$location', '$mdDialog'];
 
-    /* @ngInject */
-    function HomeController($location) {
-      var vm = this;
+  /* @ngInject */
+  function HomeController($location, $mdDialog) {
+    var vm = this;
 
-      vm.newGame = function() {
-        $location.path('/game/new/');
-      }
+    vm.newGame = function() {
+      $location.path('/game/new/');
     }
+
+    vm.joinGame = function() {
+      $mdDialog.show({
+        templateUrl: 'app/dialogs/join.html',
+        controller: 'JoinDialogController',
+        controllerAs: 'joinCtrl',
+        onComplete: function(scope, element, options) {
+          document.querySelector('#join_game_uid').focus();
+          scope.ready = true;
+        }
+      });
+    }
+  }
 })();

@@ -89,6 +89,7 @@ Copyright (c) 2015 andreasonny83. All rights reserved.
   <script type="text/javascript" src="app/main/main.controller.js"></script>
   <script type="text/javascript" src="app/home/home.controller.js"></script>
   <script type="text/javascript" src="app/game/game.controller.js"></script>
+  <script type="text/javascript" src="app/dialogs/dialogs.controller.js"></script>
   <!-- endbuild -->
 
   <!-- templates from $templateCache -->
@@ -103,6 +104,14 @@ Copyright (c) 2015 andreasonny83. All rights reserved.
     })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
     ga('create', 'UA-XXXXX-X', 'auto');
     ga('send', 'pageview');
+  </script>
+  <!-- Google Hangouts -->
+  <script src="https://apis.google.com/js/platform.js" async defer></script>
+  <script type="text/javascript" src="https://cdn.emailjs.com/dist/email.min.js"></script>
+  <script type="text/javascript">
+  (function(){
+    emailjs.init("user_fwv5CzpuMs0o9OPnbqTXp");
+  })();
   </script>
   <!-- Built with love by SonnY -->
 </body>

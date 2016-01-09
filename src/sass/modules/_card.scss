@@ -4,34 +4,14 @@
   }
 
   .users-list {
-    .face {
-      border-radius: 30px;
-      border: 1px solid #ddd;
-      width: 48px;
-      margin: 16px;
-    }
-
     .input-container {
       display: block;
       width: 40%;
       min-width: 250px;
-
-      .md-errors-spacer {
-        display: none;
-      }
-    }
-
-    .secondary-button-padding .md-list-item-text {
-      padding-right: 260px;
     }
 
     .md-list-item {
-      font-family: 'myfont';
-      padding-right: 200px;
-      position: absolute;
-      right: 40px;
-      bottom: calc(50% - 20px);
-      height: 44px;
+      font-family: 'carcassonne-scoreboard-font';
       line-height: 40px;
 
       .icon {

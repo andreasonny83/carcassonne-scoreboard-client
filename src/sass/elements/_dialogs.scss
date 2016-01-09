@@ -1,0 +1,17 @@
+.dialogBox {
+  md-dialog-content {
+    padding: 15px;
+  }
+}
+
+#add-points-dialog md-input-container {
+  display: block;
+  margin: 10px auto;
+  width: 50%;
+}
+
+#join-game-dialog md-input-container {
+  display: block;
+  margin: 30px auto 0;
+  min-width: 200px;
+}

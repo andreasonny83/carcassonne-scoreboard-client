@@ -9,10 +9,10 @@
         .module('app')
         .controller('MainController', MainController);
 
-    MainController.$inject = ['$scope', 'CONSTANTS', '$http', '$mdToast', 'socket', '$location'];
+    MainController.$inject = ['$scope', '$routeParams', '$http', '$mdToast', 'socket', '$location'];
 
     /* @ngInject */
-    function MainController($scope, CONSTANTS, $http, $mdToast, socket, $location) {
+    function MainController($scope, $routeParams, $http, $mdToast, socket, $location) {
       var vm = this;
 
       vm.app = {
@@ -71,24 +71,6 @@
         console.log('received: app:update');
         vm.app.users_online = data.users;
         vm.app.games = data.games;
-      });
-
-      socket.on('game:ready', function (data) {
-        console.log('game ready');
-        if ( data.error ) {
-          console.log('error.');
-          $mdToast.showSimple('Ops! Something went wrong. Please check all the information and try again.');
-          return;
-        }
-
-        if ( data.new_game ) {
-          $mdToast.showSimple('Game successfully created. Redirecting into the game...');
-        }
-        else {
-          $mdToast.showSimple('Redirecting into the game...');
-        }
-
-        $location.path('/game/play/' + data.game_id);
       });
     }
 })();

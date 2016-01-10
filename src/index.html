@@ -72,12 +72,13 @@ Copyright (c) 2015 andreasonny83. All rights reserved.
   <script type="text/javascript" src="bower_components/angular-material/angular-material.min.js"></script>
   <!-- endbuild -->
 
+  <!-- Socket.io -->
   <script src="https://cdn.socket.io/socket.io-1.4.3.js"></script>
-  <!-- <script src="http://carcassonne-scoreboard.herokuapp.com/socket.io/socket.io.js"></script> -->
+  <!-- Emailjs -->
+  <script type="text/javascript" src="https://cdn.emailjs.com/dist/email.min.js"></script>
 
   <!-- build:appcomponents js/appcomponents.js -->
   <script type="text/javascript" src="app/app.js"></script>
-  <script type="text/javascript" src="app/config.constants.js"></script>
   <script type="text/javascript" src="app/page-header/page-header.directive.js"></script>
   <script type="text/javascript" src="app/page-footer/page-footer.directive.js"></script>
   <!-- endbuild -->
@@ -105,14 +106,7 @@ Copyright (c) 2015 andreasonny83. All rights reserved.
     ga('create', 'UA-XXXXX-X', 'auto');
     ga('send', 'pageview');
   </script>
-  <!-- Google Hangouts -->
-  <script src="https://apis.google.com/js/platform.js" async defer></script>
-  <script type="text/javascript" src="https://cdn.emailjs.com/dist/email.min.js"></script>
-  <script type="text/javascript">
-  (function(){
-    emailjs.init("user_fwv5CzpuMs0o9OPnbqTXp");
-  })();
-  </script>
+  <script>(function(){emailjs.init("user_fwv5CzpuMs0o9OPnbqTXp");})();</script>
   <!-- Built with love by SonnY -->
 </body>
 </html>

@@ -56,6 +56,17 @@ The default server app is supposed to respond at: `http://localhost:5000` howeve
 
 ## Changelog
 
+### 1.0.3
+- Filter the scores sent to the server side and accept only values > 0
+- Lead player highlighted on the Scoreboard
+- Some visual bug fixed on the scoreboard table
+- Removed duplicated events from the socket factory
+- Players e-mail removed for now
+- Removed the `config.constants.js` never used
+- Tabindex every where and accessibility improved
+<br>
+2016.01.10
+
 ### 1.0.2
 - Make the socket service using some ServerApp variable to store the server side address.
 <br>

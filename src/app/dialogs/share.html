@@ -8,8 +8,8 @@
       </md-input-container>
     </md-dialog-content>
     <md-dialog-actions>
+      <md-button ng-disabled="shareCtrl.disable_elements" type="submit" class="md-primary">Send</md-button>
       <md-button ng-disabled="shareCtrl.disable_elements" ng-click="shareCtrl.cancel()" type="button">Cancel</md-button>
-      <md-button ng-disabled="shareCtrl.disable_elements" type="submit" class="md-primary">Add</md-button>
     </md-dialog-actions>
   </form>
 </md-dialog>

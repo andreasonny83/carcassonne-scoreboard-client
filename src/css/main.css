@@ -530,6 +530,10 @@ md-toast {
   content: "\EA08";
 }
 
+.md-button:focus {
+  outline: auto #1F62B0 5px;
+}
+
 /*
  * cs-button-primary
  */
@@ -687,14 +691,10 @@ page-header {
   min-width: 235px;
 }
 
-#hangouts-container {
-  margin: 6px 8px;
-  text-align: center;
-}
-
 @media screen and (max-width: 720px) {
   md-card md-card-content, md-list-item.md-no-proxy {
     position: relative;
+    padding: 0 12px 0 0;
   }
   md-list-item .md-secondary {
     position: absolute;
@@ -736,7 +736,7 @@ page-header {
 }
 
 #table-board ::-webkit-scrollbar {
-  width: 20px;
+  width: 15px;
 }
 
 #table-board ::-webkit-scrollbar-track {
@@ -786,6 +786,10 @@ page-header {
   border-bottom: 2px solid #ddd;
 }
 
+#table-board #table-head .cell.lead {
+  font-weight: 800;
+}
+
 #table-board #table-body {
   overflow-y: auto;
   overflow-x: hidden;
@@ -793,7 +797,7 @@ page-header {
 }
 
 #table-board #table-body.scrollfix {
-  width: calc(100% + 20px);
+  width: calc(100% + 15px);
 }
 
 #table-board #table-body .scrollable {
@@ -837,6 +841,10 @@ page-header {
   color: #333;
 }
 
+#table-board .table-footer .cell.lead {
+  font-weight: 800;
+}
+
 @media screen and (max-width: 720px) {
   #table-board {
     width: 99%;
@@ -845,7 +853,7 @@ page-header {
     max-height: 80px;
   }
   #table-board #table-body.mobile-scrollfix {
-    width: calc(100% + 20px);
+    width: calc(100% + 15px);
   }
 }
 

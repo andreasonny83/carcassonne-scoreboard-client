@@ -13,6 +13,11 @@
       var socket = io(serverApp.server + ':' + serverApp.port);
 
       function on(eventName, callback) {
+        // prevent creating multiple listeners
+        if ( socket._callbacks['$'+eventName] ) {
+          socket._callbacks['$'+eventName] = [];
+        }
+
         socket.on(eventName, function () {
           var args = arguments;
 
@@ -20,12 +25,14 @@
             callback.apply(socket, args);
           });
         });
-
-        // Remove duplicate listeners
-        socket.removeListener(eventName, callback);
       }
 
       function emit(eventName, data, callback) {
+        // prevent creating multiple listeners
+        if ( socket._callbacks['$'+eventName] ) {
+          socket._callbacks['$'+eventName] = [];
+        }
+
         socket.emit(eventName, data, function () {
           var args = arguments;
 
@@ -35,9 +42,6 @@
             }
           });
         });
-
-        // Remove duplicate listeners
-        socket.removeListener(eventName, callback);
       }
 
       return {

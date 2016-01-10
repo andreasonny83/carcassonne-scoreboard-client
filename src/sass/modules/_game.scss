@@ -16,14 +16,10 @@
   min-width: 235px;
 }
 
-#hangouts-container {
-  margin: 6px 8px;
-  text-align: center;
-}
-
 @media screen and (max-width: 720px) {
   md-card md-card-content, md-list-item.md-no-proxy {
     position: relative;
+    padding: 0 12px 0 0;
   }
 
   md-list-item .md-secondary {

@@ -1,15 +1,12 @@
 <div class="page-header-sub">
   <md-content>
     <section layout="row" layout-align="start start" layout-align-sm="center center" layout-wrap>
-      <md-button flex-xs="100" flex-sm="auto" flex-md="nogrow" class="md-raised cs-button-back" ng-click="gameCtrl.goTo('/')">Home</md-button>
-      <md-button flex-xs="100" flex-sm="auto" flex-md="nogrow" class="md-raised cs-button-back" ng-hide="{{gameCtrl.new_game}}" ng-click="gameCtrl.goTo('/game/setup/' + gameCtrl.game_id)">Game Setup</md-button>
+      <md-button flex-xs="100" flex-sm="auto" flex-md="nogrow" class="md-raised cs-button-back" ng-click="gameCtrl.goTo('/')" tabindex="6">Home</md-button>
+      <md-button flex-xs="100" flex-sm="auto" flex-md="nogrow" class="md-raised cs-button-back" ng-click="gameCtrl.goTo('/game/setup/' + gameCtrl.game_id)" tabindex="5">Game Setup</md-button>
     </section>
   </md-content>
 
   <h2 class="home">{{gameCtrl.game.name}}</h2>
-  <div id="hangouts-container">
-    <div class="g-hangout" data-render="createhangout"></div>
-  </div>
 </div>
 
 <md-content layout="row" layout-align="center start">
@@ -18,7 +15,7 @@
     <input id="gameIDinput" ng-readonly="true" ng-click="gameCtrl.selectID($event)" ng-model="gameCtrl.game_id_r">
   </md-input-container>
 
-  <md-button id="share-button" ng-click="gameCtrl.share(email)" aria-label="Email" class="md-fab md-raised md-mini">
+  <md-button id="share-button" ng-click="gameCtrl.share(email)" aria-label="Email" class="md-fab md-raised md-mini" tabindex="4">
     <i class="icon icon-email"></i>
   </md-button>
 </md-content>
@@ -36,7 +33,7 @@
                 Log
               </div>
             </div>
-            <div flex ng-repeat="(key, player) in gameCtrl.game.players" ng-class="{selected: gameCtrl.player_selected === key}" class="cell">
+            <div flex ng-repeat="(key, player) in gameCtrl.game.players" ng-class="{selected: gameCtrl.player_selected === key, lead: gameCtrl.gameLeader === key}" class="cell">
               <div class="name">
                 {{player.name}}
               </div>
@@ -70,7 +67,7 @@
               <div class="log">
               </div>
             </div>
-            <div flex ng-repeat="(key, player) in gameCtrl.game.players" ng-class="{selected: gameCtrl.player_selected === key}" class="cell">
+            <div flex ng-repeat="(key, player) in gameCtrl.game.players" ng-class="{selected: gameCtrl.player_selected === key, lead: gameCtrl.gameLeader === key}" class="cell">
               <div class="score">
                 {{player.score}}
               </div>
@@ -80,15 +77,15 @@
       </div>
 
       <div class="game-console-board">
-        <md-button class="md-raised blue" ng-click="gameCtrl.addPoints()">Add points</md-button>
-        <md-button class="md-raised blue" ng-click="gameCtrl.nextPlayer()">Next player</md-button>
-        <md-button class="md-raised red" ng-disabled="gameCtrl.undoDisabled" ng-click="gameCtrl.undo()">Undo</md-button>
+        <md-button class="md-raised blue" ng-click="gameCtrl.addPoints()" tabindex="1">Add points</md-button>
+        <md-button class="md-raised blue" ng-click="gameCtrl.nextPlayer()" tabindex="2">Next player</md-button>
+        <md-button class="md-raised red" ng-disabled="gameCtrl.undoDisabled" ng-click="gameCtrl.undo()" tabindex="3">Undo</md-button>
       </div>
 
     </md-card-content>
 
     <md-card-actions layout="row" layout-align="end center">
-      <md-button ng-click="gameCtrl.endGame()" ng-disabled="true">End Game</md-button>
+      <md-button ng-click="gameCtrl.endGame()" ng-disabled="true" tabindex="6">End Game</md-button>
     </md-card-actions>
   </md-card>
 </section>

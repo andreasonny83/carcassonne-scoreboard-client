@@ -1,4 +1,4 @@
-<md-dialog id="join-game-dialog" class="dialogBox">
+<md-dialog id="join-game-dialog" class="dialogBox" role="dialog">
   <form ng-submit="joinCtrl.joinGame(joinCtrl.game_uid)">
     <md-dialog-content>
       <h3>Enter the game id:</h3>
@@ -8,8 +8,8 @@
       </md-input-container>
     </md-dialog-content>
     <md-dialog-actions>
-      <md-button ng-click="joinCtrl.cancel()" type="button">Cancel</md-button>
       <md-button type="submit" class="md-primary">Join</md-button>
+      <md-button ng-click="joinCtrl.cancel()" type="button">Cancel</md-button>
     </md-dialog-actions>
   </form>
 </md-dialog>

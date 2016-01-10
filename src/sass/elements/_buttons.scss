@@ -54,34 +54,17 @@
 
 /* Share buttons */
 #share-button {
-  .md-button.md-fab {
-    &.cs-share,
-    &.cs-share:not([disabled]),
-    &.cs-share:not([disabled]):hover {
-      width: 46px;
-      height: 46px;
-      background-color: $carcassonne-blue;
+  background-color: $carcassonne-yellow;
+  margin: 10px 6px;
+  width: 48px;
+  height: 48px;
+  line-height: 48px;
+  text-align: center;
 
-      .icon-share {
-        color: #fff;
-        font-size: 26px;
-        line-height: 46px;
-      }
-    }
-
-  }
-  .md-button.md-raised.md-mini {
-    background-color: $carcassonne-yellow;
-    margin: 3px 6px;
-    width: 36px;
-    height: 36px;
-    line-height: 36px;
-
-    .icon {
-      color: rgba(0,0,0,.6);
-      font-size: 21px;
-      line-height: 36px;
-    }
+  .icon {
+    color: rgba(0,0,0,.65);
+    font-size: 26px;
+    line-height: 48px;
   }
 }
 

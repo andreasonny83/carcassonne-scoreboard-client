@@ -20,6 +20,9 @@
             callback.apply(socket, args);
           });
         });
+
+        // Remove duplicate listeners
+        socket.removeListener(eventName, callback);
       }
 
       function emit(eventName, data, callback) {
@@ -32,18 +35,14 @@
             }
           });
         });
-      }
 
-      // function removeAllListeners() {
-      //   for(var i = 0; i < socket.listeners.length; i++) {
-      //     var details = socket.listeners[i];
-      //     socket.removeListener(details.event, details.fn);
-      // }
+        // Remove duplicate listeners
+        socket.removeListener(eventName, callback);
+      }
 
       return {
         on: on,
         emit: emit
-        // removeAllListeners: removeAllListeners
       };
     }
 })();

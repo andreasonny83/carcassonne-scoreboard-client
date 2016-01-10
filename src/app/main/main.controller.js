@@ -9,10 +9,10 @@
         .module('app')
         .controller('MainController', MainController);
 
-    MainController.$inject = ['CONSTANTS', '$http', '$mdToast', 'socket', '$location'];
+    MainController.$inject = ['$scope', 'CONSTANTS', '$http', '$mdToast', 'socket', '$location'];
 
     /* @ngInject */
-    function MainController(CONSTANTS, $http, $mdToast, socket, $location) {
+    function MainController($scope, CONSTANTS, $http, $mdToast, socket, $location) {
       var vm = this;
 
       vm.app = {
@@ -65,11 +65,6 @@
         if ( my_id === user_id) {
           socket.emit('pong', my_id );
         }
-      });
-
-      socket.on('user:left', function (data) {
-        console.log('received: user:left');
-        // $mdToast.showSimple('A user left.');
       });
 
       socket.on('app:update', function (data) {

@@ -18,19 +18,9 @@
     <input id="gameIDinput" ng-readonly="true" ng-click="gameCtrl.selectID($event)" ng-model="gameCtrl.game_id_r">
   </md-input-container>
 
-  <md-fab-speed-dial id="share-button" md-open="gameCtrl.sharebuttonOpen" md-direction="down" class="md-fling">
-    <md-fab-trigger>
-      <md-button aria-label="menu" class="md-fab cs-share">
-        <i class="icon icon-share"></i>
-      </md-button>
-    </md-fab-trigger>
-    <md-fab-actions>
-      <md-button ng-click="gameCtrl.share(email)" aria-label="Email" class="md-fab md-raised md-mini">
-        <i class="icon icon-email"></i>
-      </md-button>
-      <br>
-    </md-fab-actions>
-  </md-fab-speed-dial>
+  <md-button id="share-button" ng-click="gameCtrl.share(email)" aria-label="Email" class="md-fab md-raised md-mini">
+    <i class="icon icon-email"></i>
+  </md-button>
 </md-content>
 
 <section layout-padding layout="row" layout-align="center center">
@@ -52,9 +42,6 @@
               </div>
               <div class="meeple">
                 <i class="icon icon-meeple {{player.color}}"></i>
-              </div>
-              <div class="avatar">
-                <img ng-src="{{player.gravatar}}" class="face" alt="{{player.name}}">
               </div>
             </div>
           </div>

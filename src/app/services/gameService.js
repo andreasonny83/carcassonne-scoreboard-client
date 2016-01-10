@@ -18,15 +18,6 @@
         },
         game = null;
 
-    function getGravatar(email) {
-      if ( email === null || email === '' ) {
-        var url = "https://secure.gravatar.com/avatar/" + md5.createHash( "" + Math.random() ) + "?d=identicon&s=150";
-        return url;
-      }
-
-      return 'http://www.gravatar.com/avatar/' + md5.createHash(email) + '?s=150';
-    }
-
     function addPlayer() {
       if ( game.players.length >= game.max_players ) {
         return false;
@@ -36,7 +27,6 @@
         name: 'Player',
         email: null,
         color: assignRndMeeple(),
-        gravatar: "https://secure.gravatar.com/avatar/" + md5.createHash( "" + Math.random() ) + "?d=identicon&s=150",
         score: 0
       });
 
@@ -54,7 +44,6 @@
 
     return {
       getGame: getGame,
-      getGravatar: getGravatar,
       addPlayer: addPlayer
     };
   }

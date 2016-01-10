@@ -19,6 +19,11 @@
 
       activate();
 
+      $scope.$on('$destroy', function (event) {
+        // destroy socket listener to avoid duplicates
+        // socket.getSocket().removeAllListeners();
+      });
+
       function activate() {
         vm.sharebuttonOpen = true;
         vm.player_selected = 0;
@@ -67,7 +72,6 @@
           name: 'Player',
           email: null,
           color: assignRndMeeple(),
-          gravatar: 'https://secure.gravatar.com/avatar/',
           score: 0
         });
       }
@@ -79,6 +83,7 @@
       }
 
       vm.startGame = function() {
+        console.log('start game. game: ' + vm.game);
         socket.emit('game:start', {game_id: vm.game_id, game: vm.game});
       }
 
@@ -207,19 +212,16 @@
       // Socket listeners
       // ================
       //
-      // $scope.$on('$destroy', function (event) {
-      //   console.log('listener destroyed');
-      //   socket.removeAllListeners();
-      // });
-
-      socket.on('game:get', function (data) {
+      socket.on('game:get', function(data) {
         console.log('received: game:get');
+
         if ( data.error || ! data.game ) {
           $mdToast.showSimple('The game you\'re trying to reach is missing. Redirecting to the home page...');
           setTimeout(function(){
             $location.path('/');
           }, 1500);
         }
+
         vm.game = data.game;
         updateScore();
       });
@@ -238,7 +240,5 @@
 
         vm.undoDisabled = vm.game.logs.length > 0 ? false : true;
       });
-
-      // ================
     }
 })();

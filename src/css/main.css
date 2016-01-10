@@ -590,30 +590,19 @@ md-toast {
 }
 
 /* Share buttons */
-#share-button .md-button.md-fab.cs-share, #share-button .md-button.md-fab.cs-share:not([disabled]), #share-button .md-button.md-fab.cs-share:not([disabled]):hover {
-  width: 46px;
-  height: 46px;
-  background-color: #1f62b0;
-}
-
-#share-button .md-button.md-fab.cs-share .icon-share, #share-button .md-button.md-fab.cs-share:not([disabled]) .icon-share, #share-button .md-button.md-fab.cs-share:not([disabled]):hover .icon-share {
-  color: #fff;
-  font-size: 26px;
-  line-height: 46px;
-}
-
-#share-button .md-button.md-raised.md-mini {
+#share-button {
   background-color: #fccd25;
-  margin: 3px 6px;
-  width: 36px;
-  height: 36px;
-  line-height: 36px;
+  margin: 10px 6px;
+  width: 48px;
+  height: 48px;
+  line-height: 48px;
+  text-align: center;
 }
 
-#share-button .md-button.md-raised.md-mini .icon {
-  color: rgba(0, 0, 0, 0.6);
-  font-size: 21px;
-  line-height: 36px;
+#share-button .icon {
+  color: rgba(0, 0, 0, 0.65);
+  font-size: 26px;
+  line-height: 48px;
 }
 
 /* Alert button */
@@ -797,12 +786,6 @@ page-header {
   border-bottom: 2px solid #ddd;
 }
 
-#table-board #table-head .avatar img {
-  border-radius: 30px;
-  border: 1px solid #ddd;
-  width: 48px;
-}
-
 #table-board #table-body {
   overflow-y: auto;
   overflow-x: hidden;
@@ -857,9 +840,6 @@ page-header {
 @media screen and (max-width: 720px) {
   #table-board {
     width: 99%;
-  }
-  #table-board #table-head .avatar img {
-    display: none;
   }
   #table-board #table-body .scrollable {
     max-height: 80px;

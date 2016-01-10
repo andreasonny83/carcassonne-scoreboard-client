@@ -41,7 +41,11 @@
     vm.shareLink = function(email) {
       vm.disable_elements = true;
 
-      emailjs.send("gmail", "carcassonne_scoreboard", {email: email, carcassonneLink: "http://carcassonne.sonnywebdesign.com/#/game/play/" + _game_id})
+      emailjs.send("gmail", "carcassonne_scoreboard", {
+        email: email,
+        carcassonneLink: "http://carcassonne.sonnywebdesign.com/#/game/play/" + _game_id,
+        gameId: _game_id
+      })
       .then(function(response) {
         $mdToast.showSimple('Email correctly sent.');
         $mdDialog.hide();

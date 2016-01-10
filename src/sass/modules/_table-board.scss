@@ -52,12 +52,6 @@
       padding: 10px 0;
       border-bottom: 2px solid #ddd;
     }
-
-    .avatar img {
-        border-radius: 30px;
-        border: 1px solid #ddd;
-        width: 48px;
-    }
   }
 
   #table-body {
@@ -116,10 +110,6 @@
 @media screen and (max-width: 720px) {
   #table-board {
     width: 99%;
-
-    #table-head .avatar img {
-      display: none;
-    }
 
     #table-body .scrollable {
       max-height: 80px;

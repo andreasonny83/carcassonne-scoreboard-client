@@ -35,11 +35,11 @@ gulp.task('serve', function(done) {
 });
 
 // start webserver from _build folder to check how it will look in production
-gulp.task('server:build', function(done) {
+gulp.task('serve:build', function(done) {
   return browserSync({
     server: {
-      baseDir: './_build/',
-      directory: true
+      baseDir: './_build/'
+      // directory: true
     }
   }, done);
 });

@@ -99,6 +99,19 @@ gulp.task('copy', function() {
     .pipe(gulp.dest('./_build/'));
 });
 
+gulp.task('copy:prod', function() {
+  // rename and uglify config.prod.js if present
+  // otherwise use config.js
+  gulp
+    .src([
+      './src/app/config.js',
+      './src/app/config.prod.js'
+    ])
+    .pipe($.rename('config.js'))
+    .pipe($.uglify())
+    .pipe(gulp.dest('./_build/js/'));
+});
+
 // SASS task, will run when any SCSS files change
 gulp.task('sass', function() {
   return gulp.src('./src/sass/main.scss')
@@ -162,6 +175,7 @@ gulp.task('usemin', function() {
     .pipe($.usemin({
       css: [$.minifyCss()],
       angularlibs: [$.uglify()],
+      angularconfig: [],
       appcomponents: [$.uglify()],
       mainapp: [$.uglify()]
     }))
@@ -227,6 +241,7 @@ gulp.task('build', function(callback) {
     'images',
     'templates',
     'usemin',
+    'copy:prod',
     callback);
 });
 
@@ -247,6 +262,7 @@ gulp.task('deploy', function(callback) {
     'images',
     'templates',
     'usemin',
+    'copy:prod',
     'send',
     callback);
 });

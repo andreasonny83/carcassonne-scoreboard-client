@@ -3,3 +3,4 @@ bower_components
 _build
 npm-debug.log
 src/css
+*.prod.*

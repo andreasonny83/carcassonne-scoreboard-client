@@ -59,17 +59,17 @@ Copyright (c) 2015 andreasonny83. All rights reserved.
   <page-header></page-header>
 
   <!-- Main view for templates -->
-  <div ng-view class="page">Loading...</div>
+  <div ng-view class="page" autoscroll="true">Loading...</div>
 
   <page-footer></page-footer>
 
   <!-- build:angularlibs js/angularlibs.js -->
-  <script type="text/javascript" src="bower_components/angular/angular.min.js"></script>
-  <script type="text/javascript" src="bower_components/angular-route/angular-route.min.js"></script>
-  <script type="text/javascript" src="bower_components/angular-animate/angular-animate.min.js"></script>
-  <script type="text/javascript" src="bower_components/angular-aria/angular-aria.min.js"></script>
-  <script type="text/javascript" src="bower_components/angular-messages/angular-messages.min.js"></script>
-  <script type="text/javascript" src="bower_components/angular-material/angular-material.min.js"></script>
+  <script src="bower_components/angular/angular.min.js"></script>
+  <script src="bower_components/angular-route/angular-route.min.js"></script>
+  <script src="bower_components/angular-animate/angular-animate.min.js"></script>
+  <script src="bower_components/angular-aria/angular-aria.min.js"></script>
+  <script src="bower_components/angular-messages/angular-messages.min.js"></script>
+  <script src="bower_components/angular-material/angular-material.min.js"></script>
   <!-- endbuild -->
 
   <!-- Socket.io -->
@@ -78,19 +78,23 @@ Copyright (c) 2015 andreasonny83. All rights reserved.
   <script src="//cdn.emailjs.com/dist/email.min.js"></script>
 
   <!-- build:appcomponents js/appcomponents.js -->
-  <script type="text/javascript" src="app/app.js"></script>
-  <script type="text/javascript" src="app/page-header/page-header.directive.js"></script>
-  <script type="text/javascript" src="app/page-footer/page-footer.directive.js"></script>
+  <script src="app/app.js"></script>
+  <script src="app/page-header/page-header.directive.js"></script>
+  <script src="app/page-footer/page-footer.directive.js"></script>
+  <!-- endbuild -->
+
+  <!-- build:angularconfig js/config.js -->
+  <script src="app/config.js"></script>
   <!-- endbuild -->
 
   <!-- build:mainapp js/mainapp.js -->
   <!-- Services -->
-  <script type="text/javascript" src="./app/services/socket.js"></script>
+  <script src="./app/services/socket.js"></script>
   <!-- Controllers -->
-  <script type="text/javascript" src="app/main/main.controller.js"></script>
-  <script type="text/javascript" src="app/home/home.controller.js"></script>
-  <script type="text/javascript" src="app/game/game.controller.js"></script>
-  <script type="text/javascript" src="app/dialogs/dialogs.controller.js"></script>
+  <script src="app/main/main.controller.js"></script>
+  <script src="app/home/home.controller.js"></script>
+  <script src="app/game/game.controller.js"></script>
+  <script src="app/dialogs/dialogs.controller.js"></script>
   <!-- endbuild -->
 
   <!-- templates from $templateCache -->

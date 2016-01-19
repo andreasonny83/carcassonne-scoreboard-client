@@ -15,12 +15,6 @@
       'socket'
     ])
     .config(config)
-    .constant("serverApp", {
-        "server": "http://localhost",
-        "port": "5000"
-        // "server": "http://carcassonne-scoreboard.herokuapp.com",
-        // "port": "80"
-    })
     .run(run);
 
   config.$inject = ['$locationProvider', '$routeProvider'];

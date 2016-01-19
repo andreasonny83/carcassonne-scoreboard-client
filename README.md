@@ -44,17 +44,28 @@ this command will trigger a gulp task responsible for initiate a local version o
 
 ### Configure the server side
 
-The default server app is supposed to respond at: `http://localhost:5000` however, if you want to use a different address to host your server app, you can simply configure your `serverApp` with your custom preferences.
+The default server app is supposed to respond at: `http://localhost:5000` however, if you want to use a different address to host your server app, you can simply configure your `serverApp` variable with your custom preferences.
 
-** The `serverApp` is located inside `src/app/app.js`. **
+** The `serverApp` is located inside `src/app/config.js`. **
 
-    .constant("serverApp", {
-        "server": "http://localhost",
-        "port": "5000"
-    })
+    angular
+      .module('app')
+      .constant('serverApp', {
+        server : 'http://localhost',
+        port   : 5000
+      });
 
+If present, gulp `usemin` will overwrite a `src/app/config.dist.js` with `src/app/config.js` during the `build` and `deploy` tasks.
+In this way you can simply clone your `src/app/config.js` to a new `src/app/config.dist.js` in where storing your production information.
 
 ## Changelog
+
+### 1.0.4
+- Scroll to top on view changes
+- app/config.js exported containing the application variables
+- Gulp updated to correctly compile config.js
+- Tap to change selected player
+- Other minor changes
 
 ### 1.0.3
 - Filter the scores sent to the server side and accept only values > 0

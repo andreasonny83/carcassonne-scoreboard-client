@@ -45,19 +45,10 @@
             vm.game_id_r = vm.game_id;
             vm.new_game  = false;
 
-            hideShareButton();
             socket.emit('game:get', vm.game_id);
-            hideShareButton();
             break;
           default:
         }
-      }
-
-      function hideShareButton() {
-        vm.sharebuttonOpen = true;
-        setTimeout(function() {
-          vm.sharebuttonOpen = false;
-        }, 100);
       }
 
       vm.addPlayer = function() {
@@ -157,6 +148,15 @@
             scope.ready = true;
           }
         });
+      }
+
+      /**
+       * tableClick
+       *
+       * Switch player clicking on the table
+       */
+      vm.tableClick = function(index) {
+        vm.player_selected = index;
       }
 
       /**

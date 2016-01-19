@@ -93,6 +93,7 @@ gulp.task('copy', function() {
   gulp
     .src([
       './src/*.*',
+      './src/.htaccess',
       '!./src/index.html'
     ])
     .pipe(gulp.dest('./_build/'));
@@ -268,7 +269,8 @@ gulp.task('send', function( cb ) {
     });
 
   var globs = [
-      '_build/**/*'
+      '_build/**/*',
+      '_build/.htaccess'
     ];
 
     return gulp.src( globs, {base: './_build/', buffer: true } )

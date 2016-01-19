@@ -33,7 +33,9 @@
                 Log
               </div>
             </div>
-            <div flex ng-repeat="(key, player) in gameCtrl.game.players" ng-class="{selected: gameCtrl.player_selected === key, lead: gameCtrl.gameLeader === key}" class="cell">
+            <div flex ng-repeat="(key, player) in gameCtrl.game.players" class="cell"
+              ng-class="{selected: gameCtrl.player_selected === key, lead: gameCtrl.gameLeader === key}"
+              ng-click="gameCtrl.tableClick($index)">
               <div class="name">
                 {{player.name}}
               </div>
@@ -52,7 +54,9 @@
                   {{log[0]}}
                 </div>
               </div>
-              <div flex ng-repeat="(key, player) in gameCtrl.game.players" ng-class="{selected: gameCtrl.player_selected === key}" class="cell">
+              <div flex ng-repeat="(key, player) in gameCtrl.game.players"
+                class="cell" ng-class="{selected: gameCtrl.player_selected === key}"
+                ng-click="gameCtrl.tableClick($index)">
                 <div class="score-log player-{{key+1}}">
                   {{log[key+1]}}
                 </div>
@@ -67,7 +71,9 @@
               <div class="log">
               </div>
             </div>
-            <div flex ng-repeat="(key, player) in gameCtrl.game.players" ng-class="{selected: gameCtrl.player_selected === key, lead: gameCtrl.gameLeader === key}" class="cell">
+            <div class="cell" flex ng-repeat="(key, player) in gameCtrl.game.players"
+              ng-class="{selected: gameCtrl.player_selected === key, lead: gameCtrl.gameLeader === key}"
+              ng-click="gameCtrl.tableClick($index)">
               <div class="score">
                 {{player.score}}
               </div>

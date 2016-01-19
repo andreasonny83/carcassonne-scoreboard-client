@@ -748,6 +748,10 @@ page-header {
   outline: 1px solid slategrey;
 }
 
+#table-board .cell {
+  outline: none;
+}
+
 #table-board .cell + .cell {
   border-left: 1px solid #ddd;
 }

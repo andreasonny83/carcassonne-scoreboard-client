@@ -13,11 +13,11 @@ Because this repository consists in the client side of the application only, if 
 
 First clone this repo to your local machine with:
 
-    git clone https://github.com/andreasonny83/carcassonne-scoreborad-client.git
+    git clone https://github.com/andreasonny83/carcassonne-scoreboard-client.git
 
 Then, cd inside the project folder with:
 
-    cd carcassonne-scoreborad-client
+    cd carcassonne-scoreboard-client
 
 #### Install the dependencies
 This project uses both Node Package Manager (npm) and Bower.
@@ -26,7 +26,7 @@ First make sure you have Node.js and npm installed. Then you will need to instal
 
     npm install -g gulp bower
 
-From inside the `carcassonne-scoreborad-client` folder, run:
+From inside the `carcassonne-scoreboard-client` folder, run:
 
     npm install && bower install
 
@@ -39,7 +39,7 @@ If you have correctly installed all the dependencies, you will now be able to ru
 
     gulp
 
-from inside the main `carcassonne-scoreborad-client` folder,
+from inside the main `carcassonne-scoreboard-client` folder,
 this command will trigger a gulp task responsible for initiate a local version of the application and open a new tab in your browser to render the `localhost:3000` where the application will be rendered.
 
 ### Configure the server side
@@ -84,7 +84,7 @@ In this way you can simply clone your `src/app/config.js` to a new `src/app/conf
 2016.01.06
 
 ### 1.0.1
-- First carcassonne-scoreborad-client using Socket.io to communicate to a carcassonne-scoreborad-server built in Node.js
+- First carcassonne-scoreboard-client using Socket.io to communicate to a carcassonne-scoreboard-server built in Node.js
 <br>
 2016.01.06
 

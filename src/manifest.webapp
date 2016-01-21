@@ -1,12 +1,12 @@
 {
   "name": "Carcassonne Scoreboard",
-  "description": "Carcassonne Scoreboard",
+  "description": "Scoreboard for the game of Carcassonne",
   "launch_path": "index.html",
   "icons": {
-    "128": "/images/icon-120x120.png",
-    "144": "images/ms-touch-icon-144x144-precomposed.png",
-    "192": "images/chrome-touch-icon-192x192.png",
-    "512": "images/apple-touch-icon.png"
+    "96": "/images/android-icon-96x96.png",
+    "144": "/images/android-icon-144x144.png",
+    "192": "/images/android-icon-192x192.png",
+    "512": "/images/icon-512x512.png"
   },
   "developer": {
     "name": "Andrea Sonny",

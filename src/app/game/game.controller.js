@@ -28,11 +28,9 @@
 
         switch (gameType) {
           case 'new':
-            console.log('newGame');
             vm.game = new_game;
             break;
           case 'setup':
-            console.log('initSetup');
             vm.game_id   = $routeParams.gameID || null;
             vm.game_id_r = vm.game_id;
             vm.new_game  = false;
@@ -40,7 +38,6 @@
             socket.emit('game:get', vm.game_id);
             break;
           case 'play':
-            console.log('initPlay');
             vm.game_id   = $routeParams.gameID || null;
             vm.game_id_r = vm.game_id;
             vm.new_game  = false;
@@ -73,7 +70,6 @@
       vm.startGame = function() {
         var game_id = vm.game_id || $routeParams.gameID;
 
-        console.log('start game. game: ' + vm.game);
         socket.emit('game:start', {game_id: game_id, game: vm.game});
       }
 
@@ -89,7 +85,6 @@
       vm.undo = function() {
         var game_id = vm.game_id || $routeParams.gameID;
 
-        console.log('undo');
         socket.emit('game:undo', {game_id: game_id});
       }
 
@@ -173,7 +168,6 @@
 
         if ( game.logs.length < 6 && table_body.className.indexOf('scrollfix') ) {
           if ( game.logs.length < 2 ) {
-            console.log('removing all scrollfix');
             table_body.className = 'table-body';
           }
           else {
@@ -219,7 +213,6 @@
         }
 
         vm.gameLeader = game_leader;
-        console.log('game leader: ' + vm.gameLeader);
 
         setTimeout(fixTable, 100, game);
       }
@@ -238,7 +231,6 @@
       // ================
       //
       socket.on('game:get', function(data) {
-        console.log('received: game:get');
 
         if ( data.error || ! data.game ) {
           $mdToast.showSimple('The game you\'re trying to reach is missing. Redirecting to the home page...');
@@ -253,10 +245,7 @@
       });
 
       socket.on('game:ready', function (data) {
-        console.log('received: game:ready');
-
         if ( data.error ) {
-          console.log('error.');
           $mdToast.showSimple('Ops! Something went wrong. Please check all the information and try again.');
           return;
         }
@@ -272,26 +261,21 @@
       });
 
       socket.on('game:update', function (data) {
-        console.log('received: game:update on: ' + data.game_id);
-        console.log('user game id: ' + game_id);
+        var game_id = $routeParams.gameID;
 
-        var game_id = vm.game_id || $routeParams.gameID;
+        // continue only if the update is related to the user's game
+        if ( data.game_id !== game_id ) return;
 
         if (data.error) {
-          console.log('game:update error');
           $mdToast.showSimple('Cannot update the current game. Please try again.');
           return;
         }
 
-        if ( data.game_id === game_id ) {
-          var game_id = game_id || $routeParams.gameID;
-          $mdToast.showSimple('Game information updated.');
-
-          vm.game = data.game;
-          updateScore();
-        }
-
+        vm.game = data.game;
         vm.undoDisabled = vm.game.logs.length > 0 ? false : true;
+
+        updateScore();
+        $mdToast.showSimple('Game information updated.');
       });
     }
 })();

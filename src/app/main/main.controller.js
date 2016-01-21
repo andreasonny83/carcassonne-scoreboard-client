@@ -60,15 +60,17 @@
       });
 
       socket.on('ping', function (user_id) {
+        if ( ! user_id ) return;
+
         var my_id = getCookie('userUniqueId');
-        console.log('received: pinging user ' + user_id);
+
         if ( my_id === user_id) {
           socket.emit('pong', my_id );
         }
       });
 
       socket.on('app:update', function (data) {
-        console.log('received: app:update');
+        // console.log('received: app:update');
         vm.app.users_online = data.users;
         vm.app.games = data.games;
       });

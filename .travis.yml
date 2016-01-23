@@ -1,11 +1,7 @@
 language: node_js
 node_js:
-- '5.1.0'
 - '4.1'
-- '4.0'
-- '0.12'
 # whitelist
-script: node_modules/karma/bin/karma start karma.conf.js --single-run
 before_install:
  - npm install -g npm@'>=3.3.12'
  - npm install -g bower karma-cli

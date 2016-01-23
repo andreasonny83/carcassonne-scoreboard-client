@@ -1,5 +1,5 @@
 // Karma configuration
-// Generated on Sat Nov 28 2015 14:16:54 GMT+0000 (GMT)
+// Generated on Sat Jan 23 2016 16:38:56 GMT+0000 (GMT)
 
 module.exports = function(config) {
   config.set({
@@ -15,14 +15,14 @@ module.exports = function(config) {
 
     // list of files / patterns to load in the browser
     files: [
-      'src/bower_components/angular/angular.min.js',
-      'src/bower_components/angular-route/angular-route.min.js',
-      'src/bower_components/angular-animate/angular-animate.min.js',
+      'src/bower_components/angular/angular.js',
+      'src/bower_components/angular-route/angular-route.js',
+      'src/bower_components/angular-mocks/angular-mocks.js',
       'src/bower_components/angular-mocks/angular-mocks.js',
       'src/app/**/*.js',
-      'src/components/**/*.js',
-      'src/views/**/*.js'
+      'test/**/*.js'
     ],
+
 
     // list of files to exclude
     exclude: [
@@ -55,23 +55,19 @@ module.exports = function(config) {
 
 
     // enable / disable watching file and executing tests whenever any file changes
-    autoWatch: true,
+    autoWatch: false,
 
 
     // start these browsers
     // available browser launchers: https://npmjs.org/browse/keyword/karma-launcher
-    browsers: [
-      // 'Chrome',
-      'Firefox'
-    ],
-
+    browsers: ['Chrome'],
 
     // Continuous Integration mode
     // if true, Karma captures browsers, runs the tests and exits
     singleRun: false,
 
     // Concurrency level
-    // how many browser should be started simultanous
+    // how many browser should be started simultaneous
     concurrency: Infinity
   })
 }

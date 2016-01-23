@@ -1,0 +1,14 @@
+language: node_js
+node_js:
+- '0.12'
+# whitelist
+branches:
+  only:
+    - master
+before_install:
+ - npm install -g bower
+install:
+  - npm install
+before_script:
+ - bower install
+ - gulp build

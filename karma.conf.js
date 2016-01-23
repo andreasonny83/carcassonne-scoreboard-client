@@ -19,7 +19,7 @@ module.exports = function(config) {
       'src/bower_components/angular-route/angular-route.js',
       'src/bower_components/angular-mocks/angular-mocks.js',
       'src/bower_components/angular-mocks/angular-mocks.js',
-      'app/**/*.js',
+      'src/app/**/*.js',
       'test/**/*.js'
     ],
 

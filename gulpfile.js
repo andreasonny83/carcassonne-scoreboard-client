@@ -155,7 +155,7 @@ gulp.task('usemin', function() {
     }))
     .pipe($.usemin({
       jsAttributes : {
-        async : true
+        async : false
       },
       css: [$.cssnano()],
       angularlibs: [$.uglify()],
@@ -186,16 +186,14 @@ gulp.task('iconfont', function() {
 
   return gulp.src(['./src/assets/icons/*.svg'])
     .pipe($.iconfont({
-      fontName: 'carcassonne-scoreboard-font', // required
-      appendUnicode: true, // recommended option
+      fontName: 'carcassonne-scoreboard-font',
+      appendUnicode: true,
       normalize: true,
-      // fontHeight: 1001,
-      formats: ['svg', 'ttf', 'eot', 'woff', 'woff2'], // default, 'woff2' and 'svg' are available
-      // timestamp: runTimestamp, // recommended to get consistent builds when watching files
+      formats: ['svg', 'ttf', 'eot', 'woff', 'woff2'],
+      timestamp: runTimestamp // recommended to get consistent builds when watching files
     }))
       .on('glyphs', function(glyphs, options) {
-        // CSS templating, e.g.
-        console.log(glyphs, options);
+        // console.log(glyphs, options);
       })
     .pipe(gulp.dest('./src/fonts/carcassonne-scoreboard-font'));
 });

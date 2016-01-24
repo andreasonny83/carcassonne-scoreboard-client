@@ -70,10 +70,18 @@ Copyright (c) 2015 andreasonny83. All rights reserved.
   <p>You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/?locale=en">upgrade your browser</a> to improve your experience.</p>
   <![endif]-->
 
+  <div ng-if="false" id="loader-view">
+    <div class="loader-box">
+      <div class="load-container load7">
+        <div class="loader">Loading...</div>
+      </div>
+    </div>
+  </div>
+
   <page-header></page-header>
 
   <!-- Main view for templates -->
-  <div ng-view class="page" autoscroll="true">Loading...</div>
+  <div ng-view class="page" autoscroll="true"></div>
 
   <page-footer></page-footer>
 
@@ -87,7 +95,7 @@ Copyright (c) 2015 andreasonny83. All rights reserved.
   <!-- endbuild -->
 
   <!-- Socket.io -->
-  <script src="//cdn.socket.io/socket.io-1.4.3.js"></script>
+  <script src="//cdn.socket.io/socket.io-1.4.3.js" async></script>
 
   <!-- build:appcomponents js/appcomponents.js -->
   <script src="app/app.js"></script>

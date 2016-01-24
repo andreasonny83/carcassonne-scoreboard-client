@@ -630,6 +630,104 @@ md-toast {
   min-width: 200px;
 }
 
+/* Import this if you are using modernizr (recommended)
+It means that loaders will fallback to a text state of simply saying "Loading..." in older browsers
+*/
+.no-cssanimations .load-container .loader {
+  text-indent: 0;
+  text-align: center;
+  color: #FFF;
+  font-size: 17px;
+  background: none;
+  border: 0 none;
+  width: auto;
+  height: auto;
+  margin: 1em auto;
+  overflow: visible;
+  box-shadow: none;
+  -webkit-animation: none;
+  animation: none;
+}
+
+.no-cssanimations .load-container .loader:before,
+.no-cssanimations .load-container .loader:after {
+  display: none;
+}
+
+.load7 .loader:before, .load7 .loader:after, .load7 .loader {
+  border-radius: 50%;
+  width: 2.5em;
+  height: 2.5em;
+  -webkit-animation-fill-mode: both;
+  animation-fill-mode: both;
+  -webkit-animation: load7 1.8s infinite ease-in-out;
+  animation: load7 1.8s infinite ease-in-out;
+}
+
+.load7 .loader {
+  font-size: 10px;
+  margin: 0 auto;
+  position: relative;
+  text-indent: -9999em;
+  -webkit-transform: translateZ(0);
+  -ms-transform: translateZ(0);
+  transform: translateZ(0);
+  -webkit-animation-delay: -0.16s;
+  animation-delay: -0.16s;
+}
+
+.load7 .loader:before {
+  left: -3.5em;
+  -webkit-animation-delay: -0.32s;
+  animation-delay: -0.32s;
+}
+
+.load7 .loader:after {
+  left: 3.5em;
+}
+
+.load7 .loader:before, .load7 .loader:after {
+  content: '';
+  position: absolute;
+  top: 0;
+}
+
+@-webkit-keyframes load7 {
+  0%, 80%, 100% {
+    box-shadow: 0 2.5em 0 -1.3em #fccd25;
+  }
+  40% {
+    box-shadow: 0 2.5em 0 0 #fccd25;
+  }
+}
+
+@keyframes load7 {
+  0%, 80%, 100% {
+    box-shadow: 0 2.5em 0 -1.3em #fccd25;
+  }
+  40% {
+    box-shadow: 0 2.5em 0 0 #fccd25;
+  }
+}
+
+#loader-view {
+  margin: 0;
+  width: 100%;
+  height: 100%;
+  position: relative;
+  background: #1f62b0;
+}
+
+#loader-view .loader-box {
+  position: absolute;
+  top: 20%;
+  height: 300px;
+  left: 0;
+  right: 0;
+  overflow: auto;
+  padding: 50px;
+}
+
 page-header {
   display: block;
   text-align: center;

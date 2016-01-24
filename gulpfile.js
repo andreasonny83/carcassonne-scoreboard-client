@@ -37,7 +37,6 @@ gulp.task('serve:build', function(done) {
   return browserSync({
     server: {
       baseDir: './_build/'
-      // directory: true
     }
   }, done);
 });
@@ -194,13 +193,14 @@ gulp.task('iconfont', function() {
 
 // default task to be run with `gulp` command
 // this default task will use Gulp to watch files.
-gulp.task('default', ['browser-sync', 'sass'], function() {
+gulp.task('default', ['fonts', 'browser-sync', 'sass'], function() {
   gulp.watch('./src/css/*.css', function(file) {
     if (file.type === "changed") {
       reload(file.path);
     }
   });
   gulp.watch(['./src/index.html', './src/app/**/*.html'], ['bs-reload']);
+  gulp.watch('./src/assets/icons/*.svg', ['fonts', 'bs-reload']);
   gulp.watch('./src/app/**/*.js', ['bs-reload']);
   gulp.watch('./src/sass/**/*.scss', ['sass']);
 });

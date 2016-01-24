@@ -20,6 +20,10 @@
         games: '-'
       };
 
+      vm.goTo = function(path) {
+        $location.path(path);
+      }
+
       function setCookie(cname, cvalue, exhours) {
           var d = new Date();
           d.setTime(d.getTime() + (exhours*60*60*1000));

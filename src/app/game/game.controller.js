@@ -101,10 +101,6 @@
         });
       }
 
-      vm.goTo = function(path) {
-        $location.path(path);
-      }
-
       vm.selectID = function($event) {
         $event.target.setSelectionRange(0, $event.target.value.length);
       }

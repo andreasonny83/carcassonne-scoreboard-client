@@ -127,17 +127,16 @@ gulp.task('sass:build', function() {
       'ios 6',
       'android 4'
     ))
-    .pipe($.uncss({
-      html: ['./src/index.html'],
-      ignore: [
-        '.index',
-        '.slick'
-      ]
-    }))
     .pipe($.cssnano())
     .pipe($.rename({suffix: '.min'}))
     .pipe($.sourcemaps.write('/'))
     .pipe(gulp.dest('_build/css'));
+});
+
+gulp.task('version', function() {
+  return gulp.src('./_build/js/templates.js')
+    .pipe($.injectVersion())
+    .pipe(gulp.dest('./_build/js/'));
 });
 
 // index.html build
@@ -217,6 +216,7 @@ gulp.task('build', function(callback) {
     'images',
     'templates',
     'usemin',
+    'version',
     'copy:prod',
     callback);
 });
@@ -238,6 +238,7 @@ gulp.task('deploy', function(callback) {
     'images',
     'templates',
     'usemin',
+    'version',
     'copy:prod',
     'send',
     callback);

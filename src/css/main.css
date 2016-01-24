@@ -420,6 +420,10 @@ Animations
   }
 }
 
+.page.ng-scope {
+  min-height: calc(100% - 208px);
+}
+
 section {
   padding: 10px 0;
 }
@@ -728,12 +732,13 @@ It means that loaders will fallback to a text state of simply saying "Loading...
   padding: 50px;
 }
 
-page-header {
+.header {
   display: block;
   text-align: center;
   background-color: #1f62b0;
   color: #fccd25;
   overflow: auto;
+  min-height: 80px;
 }
 
 .page-header-sub {
@@ -753,21 +758,23 @@ page-header {
 }
 
 .footer {
-  background-color: #fff;
-  margin-top: 30px;
-  padding: 7px 0;
+  border-top: 1px solid #fccd25;
+  bottom: 0;
+  background-color: rgba(252, 205, 37, 0.13);
+  margin: 30px 0 0;
+  padding: 30px 0 15px;
   text-align: center;
-  color: #f00;
 }
 
 .footer p {
-  padding: 0;
+  padding: 0 10px 5px 10px;
   margin: 0;
   color: #999;
+  font-size: 12px;
 }
 
 .footer p a {
-  color: #00B158;
+  color: #1f62b0;
 }
 
 .game-console-board {

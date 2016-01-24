@@ -8,8 +8,6 @@ var gulp        = require('gulp'),
     runSequence = require('run-sequence'),
     browserSync = require('browser-sync'),
     reload      = browserSync.reload,
-    iconfont    = require('gulp-iconfont'),
-    consolidate = require('gulp-consolidate'),
     ftp         = require('vinyl-ftp'),
     minimist    = require('minimist'),
     gutil       = require('gulp-util'),
@@ -68,21 +66,8 @@ gulp.task('images', function() {
     .pipe(gulp.dest('./_build/images'));
 });
 
-// minify HTML
-gulp.task('minify-html', function() {
-  var opts = {
-    comments: true,
-    spare: true,
-    conditionals: true
-  };
-
-  gulp.src('./src/*.html')
-    .pipe($.minifyHtml(opts))
-    .pipe(gulp.dest('./_build/'));
-});
-
 // copy fonts
-gulp.task('fonts', function() {
+gulp.task('fonts', ['iconfont'], function() {
   gulp
     .src(['./src/fonts/carcassonne-scoreboard-font/*.*'])
     .pipe(gulp.dest('./_build/fonts/carcassonne-scoreboard-font'));
@@ -151,11 +136,7 @@ gulp.task('sass:build', function() {
         '.slick'
       ]
     }))
-    .pipe($.minifyCss({
-      keepBreaks: true,
-      aggressiveMerging: false,
-      advanced: false
-    }))
+    .pipe($.cssnano())
     .pipe($.rename({suffix: '.min'}))
     .pipe($.sourcemaps.write('/'))
     .pipe(gulp.dest('_build/css'));
@@ -169,11 +150,14 @@ gulp.task('usemin', function() {
   return gulp.src('./src/index.html')
     // add templates path
     .pipe($.htmlReplace({
-        'templates': '<script type="text/javascript" src="js/templates.js"></script>',
+        'templates': '<script type="text/javascript" src="js/templates.js" async></script>',
         'base_url': '<base href="' + baseUrl + '">'
     }))
     .pipe($.usemin({
-      css: [$.minifyCss()],
+      jsAttributes : {
+        async : false
+      },
+      css: [$.cssnano()],
       angularlibs: [$.uglify()],
       angularconfig: [],
       appcomponents: [$.uglify()],
@@ -189,7 +173,7 @@ gulp.task('templates', function() {
     // './src/**/*.html',
     // '!./src/bower_components/**/*.*'
   ])
-    .pipe($.minifyHtml())
+    .pipe($.htmlmin())
     .pipe($.angularTemplatecache({
       module: 'app',
       root: 'app'
@@ -197,21 +181,19 @@ gulp.task('templates', function() {
     .pipe(gulp.dest('_build/js'));
 });
 
-gulp.task('iconfonts', function() {
+gulp.task('iconfont', function() {
   var runTimestamp = Math.round(Date.now()/1000);
 
   return gulp.src(['./src/assets/icons/*.svg'])
-    .pipe(iconfont({
-      fontName: 'carcassonne-scoreboard-font', // required
-      appendUnicode: true, // recommended option
+    .pipe($.iconfont({
+      fontName: 'carcassonne-scoreboard-font',
+      appendUnicode: true,
       normalize: true,
-      // fontHeight: 1001,
-      formats: ['svg', 'ttf', 'eot', 'woff', 'woff2'], // default, 'woff2' and 'svg' are available
-      // timestamp: runTimestamp, // recommended to get consistent builds when watching files
+      formats: ['svg', 'ttf', 'eot', 'woff', 'woff2'],
+      timestamp: runTimestamp // recommended to get consistent builds when watching files
     }))
       .on('glyphs', function(glyphs, options) {
-        // CSS templating, e.g.
-        console.log(glyphs, options);
+        // console.log(glyphs, options);
       })
     .pipe(gulp.dest('./src/fonts/carcassonne-scoreboard-font'));
 });

@@ -1,0 +1,17 @@
+#loader-view {
+  margin: 0;
+  width: 100%;
+  height: 100%;
+  position: relative;
+  background: $carcassonne-blue;
+
+  .loader-box {
+    position: absolute;
+    top: 20%;
+    height: 300px;
+    left: 0;
+    right: 0;
+    overflow: auto;
+    padding: 50px;
+  }
+}

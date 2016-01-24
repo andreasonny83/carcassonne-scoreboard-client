@@ -68,8 +68,7 @@ gulp.task('images', function() {
 
 // copy fonts
 gulp.task('fonts', ['iconfont'], function() {
-  gulp
-    .src(['./src/fonts/carcassonne-scoreboard-font/*.*'])
+  return gulp.src(['./src/fonts/carcassonne-scoreboard-font/*.*'])
     .pipe(gulp.dest('./_build/fonts/carcassonne-scoreboard-font'));
 });
 
@@ -150,13 +149,10 @@ gulp.task('usemin', function() {
   return gulp.src('./src/index.html')
     // add templates path
     .pipe($.htmlReplace({
-        'templates': '<script type="text/javascript" src="js/templates.js" async></script>',
+        'templates': '<script type="text/javascript" src="js/templates.js"></script>',
         'base_url': '<base href="' + baseUrl + '">'
     }))
     .pipe($.usemin({
-      jsAttributes : {
-        async : false
-      },
       css: [$.cssnano()],
       angularlibs: [$.uglify()],
       angularconfig: [],
@@ -170,8 +166,6 @@ gulp.task('usemin', function() {
 gulp.task('templates', function() {
   return gulp.src([
     './src/app/**/*.html'
-    // './src/**/*.html',
-    // '!./src/bower_components/**/*.*'
   ])
     .pipe($.htmlmin())
     .pipe($.angularTemplatecache({

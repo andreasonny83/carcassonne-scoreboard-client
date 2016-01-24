@@ -3,4 +3,5 @@ bower_components
 _build
 npm-debug.log
 src/css
+src/fonts
 *.prod.*

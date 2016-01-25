@@ -66,6 +66,9 @@
           }
         }
       })
+      .when( '/privacy-policy', {
+        templateUrl: 'app/privacy/privacy.html'
+      })
       .otherwise({
         redirectTo: '/'
       });

@@ -1,6 +1,6 @@
 {
   "name": "carcassonne-scoreboard-client",
-  "version": "1.0.4",
+  "version": "1.0.5",
   "author": "Andrea Zornada <andreasonny83@gmail.com>",
   "description": "Client side of Carcassonne Scoreboard",
   "main": "index.html",

@@ -61,12 +61,27 @@ In this way you can simply clone your `src/app/config.js` to a new `src/app/conf
 
 ## Changelog
 
+### 1.0.5
+- Privacy policy
+- Loading spinner at start
+- Header and Footer improved
+- Version in Footer
+- Socket.io in bower_components
+- Gulp tasks optimized
+- Apache optimization
+- Travis CI
+- Other minor changes
+<br>
+2016.01.19
+
 ### 1.0.4
 - Scroll to top on view changes
 - app/config.js exported containing the application variables
 - Gulp updated to correctly compile config.js
 - Tap to change selected player
 - Other minor changes
+<br>
+2016.01.19
 
 ### 1.0.3
 - Filter the scores sent to the server side and accept only values > 0

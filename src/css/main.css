@@ -966,4 +966,24 @@ It means that loaders will fallback to a text state of simply saying "Loading...
   }
 }
 
+#privacy {
+  padding: 10px 15px;
+}
+
+#privacy h2, #privacy h3, #privacy a {
+  color: #1f62b0;
+}
+
+#privacy h2 {
+  font-size: 28px;
+}
+
+#privacy h3 {
+  font-size: 24px;
+}
+
+#privacy p {
+  color: #333;
+}
+
 /*# sourceMappingURL=main.css.map */

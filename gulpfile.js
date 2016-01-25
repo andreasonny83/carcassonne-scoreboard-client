@@ -152,6 +152,7 @@ gulp.task('usemin', function() {
     }))
     .pipe($.usemin({
       css: [$.cssnano()],
+      libs: [$.uglify()],
       angularlibs: [$.uglify()],
       angularconfig: [],
       appcomponents: [$.uglify()],

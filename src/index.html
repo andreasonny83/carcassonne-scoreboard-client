@@ -85,6 +85,12 @@ Copyright (c) 2015 andreasonny83. All rights reserved.
 
   <page-footer></page-footer>
 
+  <!-- Non-angular libraries -->
+  <!-- build:libs js/libs.js -->
+  <script src="bower_components/cookieconsent2/build/cookieconsent.min.js"></script>
+  <script src="bower_components/socket.io-client/socket.io.js"></script>
+  <!-- endbuild -->
+
   <!-- build:angularlibs js/angularlibs.js -->
   <script src="bower_components/angular/angular.min.js"></script>
   <script src="bower_components/angular-route/angular-route.min.js"></script>
@@ -93,9 +99,6 @@ Copyright (c) 2015 andreasonny83. All rights reserved.
   <script src="bower_components/angular-messages/angular-messages.min.js"></script>
   <script src="bower_components/angular-material/angular-material.min.js"></script>
   <!-- endbuild -->
-
-  <!-- Socket.io -->
-  <script src="//cdn.socket.io/socket.io-1.4.3.js"></script>
 
   <!-- build:appcomponents js/appcomponents.js -->
   <script src="app/app.js"></script>
@@ -109,7 +112,7 @@ Copyright (c) 2015 andreasonny83. All rights reserved.
 
   <!-- build:mainapp js/mainapp.js -->
   <!-- Services -->
-  <script src="./app/services/socket.js"></script>
+  <script src="app/services/socket.js"></script>
   <!-- Controllers -->
   <script src="app/main/main.controller.js"></script>
   <script src="app/home/home.controller.js"></script>
@@ -119,7 +122,20 @@ Copyright (c) 2015 andreasonny83. All rights reserved.
 
   <!-- templates from $templateCache -->
   <!-- build:templates -->
+
   <!-- endbuild -->
+
+  <!-- Begin Cookie Consent plugin by Silktide - http://silktide.com/cookieconsent -->
+  <script type="text/javascript">
+      window.cookieconsent_options = {
+        "message"   : "This website uses cookies to ensure you get the best experience on our website",
+        "dismiss"   : "Got it!",
+        "learnMore" : "More info",
+        "link"      : "#/privacy-policy",
+        "theme"     : "dark-bottom"
+      };
+  </script>
+  <!-- End Cookie Consent plugin -->
 
   <!-- Built with love by SonnY -->
 </body>

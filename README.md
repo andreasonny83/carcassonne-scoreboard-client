@@ -1,115 +1,114 @@
 # Carcassonne Scoreboard (client)
+
 [![Build Status](https://travis-ci.org/andreasonny83/carcassonne-scoreboard-client.svg?branch=master)](https://travis-ci.org/andreasonny83/carcassonne-scoreboard-client)
 
-###### Live version running at: [carcassonne.sonnywebdesign.com](http://carcassonne.sonnywebdesign.com)
+> Live version running at: [carcassonne-scoreboard-client.herokuapp.com](https://carcassonne-scoreboard-client.herokuapp.com)
 
 ## Install
 
 ### Introduction
 
-Because this repository consists in the client side of the application only, if you want to run the whole application in your own local environment, you will need to download and run the server side first.
+Because this repository consists in the client side of the application only,
+if you want to run the whole application in your own local environment,
+you will need to download and run the server side first.
 
 ### Prepare your local environment
+
 #### Get the code
 
 First clone this repo to your local machine with:
 
-    git clone https://github.com/andreasonny83/carcassonne-scoreboard-client.git
+```sh
+git clone https://github.com/andreasonny83/carcassonne-scoreboard-client.git
+```
 
 Then, cd inside the project folder with:
 
-    cd carcassonne-scoreboard-client
+```sh
+cd !$
+```
 
 #### Install the dependencies
-This project uses both Node Package Manager (npm) and Bower.
 
-First make sure you have Node.js and npm installed. Then you will need to install globally gulp and bower, so run the following command line from your terminal:
+This project uses NodeJS, npm Bower and Gulp.
+Make sure you have them installed on your machine before proceeding.
 
-    npm install -g gulp bower
+Then, install all the project's dependencies with:
 
-From inside the `carcassonne-scoreboard-client` folder, run:
+```sh
+npm install
+```
 
-    npm install && bower install
-
-This last command will install all the local dependencies the application will need to use in development mode.
-
+This will install all the local dependencies the application
+needs to run in development mode.
 
 ### Run your local project
 
-If you have correctly installed all the dependencies, you will now be able to run your local project simply with:
+If you have correctly installed all the dependencies,
+you will now be able to run your local project simply with:
 
-    gulp
+```sh
+npm start
+```
 
 from inside the main `carcassonne-scoreboard-client` folder,
-this command will trigger a gulp task responsible for initiate a local version of the application and open a new tab in your browser to render the `localhost:3000` where the application will be rendered.
+this command will trigger a gulp task responsible for initiate a local version
+of the application and open a new tab in your browser to render the
+`localhost:3000` where the application will be rendered.
 
 ### Configure the server side
 
-The default server app is supposed to respond at: `http://localhost:5000` however, if you want to use a different address to host your server app, you can simply configure your `serverApp` variable with your custom preferences.
+The default server app is supposed to respond at: `http://localhost:5000`
+however, if you want to use a different address to host your server app,
+you can simply configure your `serverApp` variable with your custom preferences.
 
-** The `serverApp` is located inside `src/app/config.js`. **
+*The `serverApp` is located inside `src/app/config.js`.*
 
-    angular
-      .module('app')
-      .constant('serverApp', {
-        server : 'http://localhost',
-        port   : 5000
-      });
+```javascript
+angular
+  .module('app')
+  .constant('serverApp', {
+    server : 'http://localhost',
+    port   : 5000
+  });
+```
 
-If present, gulp `usemin` will overwrite a `src/app/config.dist.js` with `src/app/config.js` during the `build` and `deploy` tasks.
-In this way you can simply clone your `src/app/config.js` to a new `src/app/config.dist.js` in where storing your production information.
+### Build a minified distribution version
+
+```sh
+npm run build
+```
+
+If present, gulp `usemin` will overwrite a `src/app/config.dist.js`
+with `src/app/config.js` during the `build` and `deploy` tasks.
+In this way you can simply clone your `src/app/config.js` to a new
+`src/app/config.dist.js` in where storing your production information.
+
+### Serve from the distribution folder
+
+```sh
+npm run serve:dist
+```
+
+This task will generate a new distribution project and will serve that using
+local server.
+
+## Contributing
+
+We really appreciate your collaborations and feedbacks!
+
+1.  Fork it!
+2.  Create your feature branch: `git checkout -b my-new-feature`
+3.  Commit your changes: `git commit -m 'Add some feature'`
+4.  Push to the branch: `git push origin my-new-feature`
+5.  Submit a pull request :D
 
 ## Changelog
 
-### 1.0.5
-- Privacy policy
-- Loading spinner at start
-- Header and Footer improved
-- Version in Footer
-- Socket.io in bower_components
-- Gulp tasks optimized
-- Apache optimization
-- Travis CI
-- Other minor changes
-<br>
-2016.01.19
+Changelog available [here][changelog-link]
 
-### 1.0.4
-- Scroll to top on view changes
-- app/config.js exported containing the application variables
-- Gulp updated to correctly compile config.js
-- Tap to change selected player
-- Other minor changes
-<br>
-2016.01.19
+## License
 
-### 1.0.3
-- Filter the scores sent to the server side and accept only values > 0
-- Lead player highlighted on the Scoreboard
-- Some visual bug fixed on the scoreboard table
-- Removed duplicated events from the socket factory
-- Players e-mail removed for now
-- Removed the `config.constants.js` never used
-- Tabindex every where and accessibility improved
-<br>
-2016.01.10
+MIT © [Andrea Sonny](https://andreasonny.mit-license.org/2015-2016)
 
-### 1.0.2
-- Make the socket service using some ServerApp variable to store the server side address.
-<br>
-2016.01.06
-
-### 1.0.1
-- First carcassonne-scoreboard-client using Socket.io to communicate to a carcassonne-scoreboard-server built in Node.js
-<br>
-2016.01.06
-
-### 1.0.0
-- First working version
-- No server side yet
-<br>
-2015.12.28
-
-### 0.0.1
-- initial release<br>
-2015.12.28
+[changelog-link]: https://github.com/andreasonny83/carcassonne-scoreboard-client/blob/master/CHANGELOG.md

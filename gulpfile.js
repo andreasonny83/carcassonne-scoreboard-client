@@ -1,18 +1,22 @@
 /**
- * @author  SonnY <andreasonny83@gmail.com>
- * @license MIT
+ * carcassonne-scoreboard-client
+ *
+ * @author    Andrea Sonny <andreasonny83@gmail.com>
+ * @license   MIT
+ *
+ * https://andreasonny.mit-license.org/
+ *
  */
-var gulp        = require('gulp'),
-    $           = require('gulp-load-plugins')(),
-    del         = require('del'),
-    runSequence = require('run-sequence'),
-    browserSync = require('browser-sync'),
-    reload      = browserSync.reload,
-    ftp         = require('vinyl-ftp'),
-    minimist    = require('minimist'),
-    gutil       = require('gulp-util'),
-    Server      = require('karma').Server,
-    args        = minimist(process.argv.slice(2));
+var gulp        = require('gulp');
+var $           = require('gulp-load-plugins')();
+var del         = require('del');
+var runSequence = require('run-sequence');
+var browserSync = require('browser-sync');
+var reload      = browserSync.reload;
+var minimist    = require('minimist');
+var gutil       = require('gulp-util');
+var Server      = require('karma').Server;
+var args        = minimist(process.argv.slice(2));
 
 // browser-sync task, only cares about compiled CSS
 gulp.task('browser-sync', function() {
@@ -32,11 +36,11 @@ gulp.task('serve', function(done) {
   }, done);
 });
 
-// start webserver from _build folder to check how it will look in production
-gulp.task('serve:build', function(done) {
+// start webserver from dist folder to check how it will look in production
+gulp.task('serve:dist', function(done) {
   return browserSync({
     server: {
-      baseDir: './_build/'
+      baseDir: './dist/'
     }
   }, done);
 });
@@ -49,26 +53,26 @@ gulp.task('bs-reload', function() {
 // delete build folder
 gulp.task('clean:build', function () {
   del([
-    './_build/'
+    './dist/'
   ]);
 });
 
 // optimize images
 gulp.task('images', function() {
   return gulp.src('./src/images/**/*')
-    .pipe($.changed('./_build/images'))
+    .pipe($.changed('./dist/images'))
     .pipe($.imagemin({
       optimizationLevel: 3,
       progressive: true,
       interlaced: true
     }))
-    .pipe(gulp.dest('./_build/images'));
+    .pipe(gulp.dest('./dist/images'));
 });
 
 // copy fonts
 gulp.task('fonts', ['iconfont'], function() {
   return gulp.src(['./src/fonts/carcassonne-scoreboard-font/*.*'])
-    .pipe(gulp.dest('./_build/fonts/carcassonne-scoreboard-font'));
+    .pipe(gulp.dest('./dist/fonts/carcassonne-scoreboard-font'));
 });
 
 // copy base files
@@ -79,7 +83,7 @@ gulp.task('copy', function() {
       './src/.htaccess',
       '!./src/index.html'
     ])
-    .pipe(gulp.dest('./_build/'));
+    .pipe(gulp.dest('./dist/'));
 });
 
 gulp.task('copy:prod', function() {
@@ -92,7 +96,7 @@ gulp.task('copy:prod', function() {
     ])
     .pipe($.rename('config.js'))
     .pipe($.uglify())
-    .pipe(gulp.dest('./_build/js/'));
+    .pipe(gulp.dest('./dist/js/'));
 });
 
 // SASS task, will run when any SCSS files change
@@ -130,13 +134,13 @@ gulp.task('sass:build', function() {
     .pipe($.cssnano())
     .pipe($.rename({suffix: '.min'}))
     .pipe($.sourcemaps.write('/'))
-    .pipe(gulp.dest('_build/css'));
+    .pipe(gulp.dest('dist/css'));
 });
 
 gulp.task('version', function() {
-  return gulp.src('./_build/js/templates.js')
+  return gulp.src('./dist/js/templates.js')
     .pipe($.injectVersion())
-    .pipe(gulp.dest('./_build/js/'));
+    .pipe(gulp.dest('./dist/js/'));
 });
 
 // index.html build
@@ -158,7 +162,7 @@ gulp.task('usemin', function() {
       appcomponents: [$.uglify()],
       mainapp: [$.uglify()]
     }))
-    .pipe(gulp.dest('./_build/'));
+    .pipe(gulp.dest('./dist/'));
 });
 
 // make templateCache from all HTML files
@@ -171,7 +175,7 @@ gulp.task('templates', function() {
       module: 'app',
       root: 'app'
     }))
-    .pipe(gulp.dest('_build/js'));
+    .pipe(gulp.dest('dist/js'));
 });
 
 gulp.task('iconfont', function() {
@@ -180,7 +184,7 @@ gulp.task('iconfont', function() {
   return gulp.src(['./src/assets/icons/*.svg'])
     .pipe($.iconfont({
       fontName: 'carcassonne-scoreboard-font',
-      appendUnicode: true,
+      prependUnicode: true,
       normalize: true,
       formats: ['svg', 'ttf', 'eot', 'woff', 'woff2'],
       timestamp: runTimestamp // recommended to get consistent builds when watching files
@@ -193,7 +197,7 @@ gulp.task('iconfont', function() {
 
 // default task to be run with `gulp` command
 // this default task will use Gulp to watch files.
-gulp.task('default', ['fonts', 'browser-sync', 'sass'], function() {
+gulp.task('serve', ['fonts', 'browser-sync', 'sass'], function() {
   gulp.watch('./src/css/*.css', function(file) {
     if (file.type === "changed") {
       reload(file.path);
@@ -223,73 +227,13 @@ gulp.task('build', function(callback) {
 });
 
 /**
- * Live deploy
- *
- * use with the followinf syntax:
- * gulp deploy --remote www.app.com --remote_path /public_html/carcassonne/ --base_url / --user username --password password
- *
- * where username and password are the ftp credentials
- */
-gulp.task('deploy', function(callback) {
-  runSequence(
-    'clean:build',
-    'copy',
-    'sass:build',
-    'fonts',
-    'images',
-    'templates',
-    'usemin',
-    'version',
-    'copy:prod',
-    'send',
-    callback);
-});
-
-/**
- * Send all files through FTP
- */
-gulp.task('send', function( cb ) {
-  var remotePath = args.remote_path,
-      conn = ftp.create({
-      host: args.remote,
-      user: args.user,
-      password: args.password,
-      log: gutil.log
-      // parallel: 25,
-      // debug: true,
-      // idleTimeout: 200,
-      // maxConnections: 30,
-      // reload: true,
-    });
-
-  var globs = [
-      '_build/**/*',
-      '_build/.htaccess'
-    ];
-
-    return gulp.src( globs, {base: './_build/', buffer: true } )
-      // .pipe( conn.differentSize( remotePath ) )
-      .pipe( conn.newer( remotePath ) )
-      .pipe( conn.dest( remotePath ) );
-  //
-  //   conn.rmdir( remotePath, function ( err ) {
-  //     if ( err ) {
-  //       // If the remote directory doesn't exisits, do nothing and continue with the upload
-  //       // return cb( err );
-  //     }
-  //     gulp.src(globs, { base: './dist/', buffer: false } )
-  //       .pipe( conn.newer( remotePath ) )
-  //       .pipe( conn.dest( remotePath ) );
-  // });
-  //
-});
-
-/**
  * Run test once and exit
  */
-gulp.task( 'test', function (done) {
+gulp.task('test', function (done) {
   new Server({
     configFile: __dirname + '/karma.conf.js',
     singleRun: true
   }, done).start();
 });
+
+gulp.task('default', ['serve']);

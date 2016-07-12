@@ -1,12 +1,13 @@
 /**
- * Angular boilerplate
+ * carcassonne-scoreboard-client
  *
- * @author    Andrea Zornada <andreasonny83@gmail.com>
+ * @author    Andrea Sonny <andreasonny83@gmail.com>
  * @license   MIT
+ *
+ * https://andreasonny.mit-license.org/
  *
  */
 (function() {
-
   angular
     .module('app', [
       'ngRoute',

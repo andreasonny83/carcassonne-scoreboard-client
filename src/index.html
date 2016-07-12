@@ -17,19 +17,19 @@ Copyright (c) 2015 andreasonny83. All rights reserved.
   <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
   <title>Carcassonne Scoreboard</title>
 
-  <link rel="apple-touch-icon" sizes="57x57" href="/images/apple-icon-57x57.png">
-  <link rel="apple-touch-icon" sizes="60x60" href="/images/apple-icon-60x60.png">
-  <link rel="apple-touch-icon" sizes="72x72" href="/images/apple-icon-72x72.png">
-  <link rel="apple-touch-icon" sizes="76x76" href="/images/apple-icon-76x76.png">
-  <link rel="apple-touch-icon" sizes="114x114" href="/images/apple-icon-114x114.png">
-  <link rel="apple-touch-icon" sizes="120x120" href="/images/apple-icon-120x120.png">
-  <link rel="apple-touch-icon" sizes="144x144" href="/images/apple-icon-144x144.png">
-  <link rel="apple-touch-icon" sizes="152x152" href="/images/apple-icon-152x152.png">
-  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-icon-180x180.png">
-  <link rel="icon" type="image/png" sizes="192x192"  href="/images/android-icon-192x192.png">
-  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32.png">
-  <link rel="icon" type="image/png" sizes="96x96" href="/images/favicon-96x96.png">
-  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16.png">
+  <link rel="apple-touch-icon" sizes="57x57" href="images/apple-icon-57x57.png">
+  <link rel="apple-touch-icon" sizes="60x60" href="images/apple-icon-60x60.png">
+  <link rel="apple-touch-icon" sizes="72x72" href="images/apple-icon-72x72.png">
+  <link rel="apple-touch-icon" sizes="76x76" href="images/apple-icon-76x76.png">
+  <link rel="apple-touch-icon" sizes="114x114" href="images/apple-icon-114x114.png">
+  <link rel="apple-touch-icon" sizes="120x120" href="images/apple-icon-120x120.png">
+  <link rel="apple-touch-icon" sizes="144x144" href="images/apple-icon-144x144.png">
+  <link rel="apple-touch-icon" sizes="152x152" href="images/apple-icon-152x152.png">
+  <link rel="apple-touch-icon" sizes="180x180" href="images/apple-icon-180x180.png">
+  <link rel="icon" type="image/png" sizes="192x192"  href="images/android-icon-192x192.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="images/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="96x96" href="images/favicon-96x96.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="images/favicon-16x16.png">
 
   <!-- Disable tap highlight on IE -->
   <meta name="msapplication-tap-highlight" content="no">
@@ -40,16 +40,16 @@ Copyright (c) 2015 andreasonny83. All rights reserved.
   <!-- Add to homescreen for Chrome on Android -->
   <meta name="mobile-web-app-capable" content="yes">
   <meta name="Carcassonne scoreboard" content="Carcassonne Scoreboard">
-  <link rel="icon" sizes="192x192" href="/images/android-icon-192x192.png">
+  <link rel="icon" sizes="192x192" href="images/android-icon-192x192.png">
 
   <!-- Add to homescreen for Safari on iOS -->
   <meta name="apple-mobile-web-app-capable" content="yes">
   <meta name="apple-mobile-web-app-status-bar-style" content="black">
   <meta name="apple-mobile-web-app-title" content="Carcassonne Scoreboard">
-  <link rel="apple-touch-icon" href="/images/apple-icon-152x152.png">
+  <link rel="apple-touch-icon" href="images/apple-icon-152x152.png">
 
   <!-- Tile icon for Win8 (144x144 + tile color) -->
-  <meta name="msapplication-TileImage" content="/images/ms-icon-144x144.png">
+  <meta name="msapplication-TileImage" content="images/ms-icon-144x144.png">
   <meta name="msapplication-TileColor" content="#2F3BA2">
 
   <!-- Color the status bar on mobile devices -->
@@ -127,13 +127,23 @@ Copyright (c) 2015 andreasonny83. All rights reserved.
 
   <!-- Begin Cookie Consent plugin by Silktide - http://silktide.com/cookieconsent -->
   <script type="text/javascript">
-      window.cookieconsent_options = {
-        "message"   : "This website uses cookies to ensure you get the best experience on our website",
-        "dismiss"   : "Got it!",
-        "learnMore" : "More info",
-        "link"      : "#/privacy-policy",
-        "theme"     : "dark-bottom"
-      };
+  window.cookieconsent_options = {
+    message: 'This website uses cookies to ensure you get the best experience on our website',
+    dismiss: 'Got it!',
+    learnMore: 'More info',
+    link: '#/privacy-policy',
+    theme: 'dark-bottom'
+  };
+
+  if ('serviceWorker' in navigator) {
+    navigator.serviceWorker.register('/sw.js').then(function(registration) {
+      // Registration was successful
+      console.log('ServiceWorker registration successful with scope: ',    registration.scope);
+    }).catch(function(err) {
+      // registration failed :(
+      console.log('ServiceWorker registration failed: ', err);
+    });
+  }
   </script>
   <!-- End Cookie Consent plugin -->
 

@@ -1,7 +1,8 @@
 node_modules
 bower_components
-_build
+
 npm-debug.log
+
+dist
 src/css
 src/fonts
-*.prod.*

@@ -1,5 +1,5 @@
 {
-  "name": "Carcassonne scoreboard",
+  "name": "carcassonne-scoreboard",
   "authors": [
     "SonnY <andreasonny83@gmail.com>"
   ],
@@ -14,10 +14,10 @@
     "angular": "^1.5.7",
     "angular-route": "^1.5.7",
     "angular-animate": "^1.5.7",
-    "normalize-css": "^4.2.0",
+    "normalize-css": "4.2.0",
     "angular-material": "^1.0.9",
-    "cookieconsent2": "^1.0.10",
-    "socket.io-client": "^1.4.8",
+    "cookieconsent2": "1.0.10",
+    "socket.io-client": "1.4.8",
     "angular-mocks": "^1.5.7"
   }
 }

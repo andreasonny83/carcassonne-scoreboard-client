@@ -2,7 +2,7 @@
 
 [![Build Status](https://travis-ci.org/andreasonny83/carcassonne-scoreboard-client.svg?branch=master)](https://travis-ci.org/andreasonny83/carcassonne-scoreboard-client)
 
-> Live version running at: [carcassonne-scoreboard-client.herokuapp.com](https://carcassonne-scoreboard-client.herokuapp.com)
+> Live version running at: [carcassonne.sonnywebdesign.com](http://carcassonne.sonnywebdesign.com)
 
 ## Install
 

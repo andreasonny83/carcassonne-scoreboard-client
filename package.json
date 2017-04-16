@@ -3,7 +3,7 @@
   "version": "1.2.0",
   "author": "Andrea Sonny <andreasonny83@gmail.com>",
   "description": "Online Scoreboard for the famous boardgame Carcassonne",
-  "main": "dist/index.js",
+  "main": "index.js",
   "repository": {
     "type": "git",
     "url": "https://github.com/andreasonny83/carcassonne-scoreboard-client.git"
@@ -17,18 +17,16 @@
     "test": "./node_modules/.bin/karma start karma.conf.js --single-run --browsers PhantomJS",
     "start": "gulp serve",
     "build": "gulp build",
-    "clean:dist": "rimraf ./*.* ./src",
-    "deploy": "npm run build && npm run clean:dist && nodemon ./dist/index.js",
     "preserve:dist": "gulp build",
     "serve:dist": "gulp serve:dist",
-    "heroku-postbuild": "npm run deploy"
+    "heroku-postbuild": "gulp deploy"
   },
   "contributors": [],
   "private": true,
   "license": "MIT",
   "dependencies": {
-    "browser-sync": "2.13.0",
     "bower": "1.8.0",
+    "browser-sync": "2.13.0",
     "del": "2.2.1",
     "express": "4.15.2",
     "gulp": "3.9.1",
@@ -61,7 +59,6 @@
     "nodemon": "1.11.0",
     "npm": "3.10.5",
     "opn": "4.0.2",
-    "rimraf": "2.6.1",
     "run-sequence": "1.2.2",
     "serve-index": "1.8.0",
     "serve-static": "1.11.1",

@@ -57,6 +57,18 @@ gulp.task('clean:build', function () {
   ]);
 });
 
+// delete source folder
+gulp.task('clean:src', function () {
+  return del([
+    './src/',
+    '*.js',
+    '.*',
+    '*.md',
+    'LICENSE',
+    'bower.json'
+  ]);
+});
+
 // optimize images
 gulp.task('images', function() {
   return gulp.src('./src/images/**/*')
@@ -97,6 +109,18 @@ gulp.task('copy:prod', function() {
     .pipe($.rename('config.js'))
     .pipe($.uglify())
     .pipe(gulp.dest('./dist/js/'));
+});
+
+gulp.task('move:dist', function() {
+  // rename and uglify config.prod.js if present
+  // otherwise use config.js
+  return gulp
+    .src([
+      './dist/**/*',
+    ])
+    .pipe($.rename('config.js'))
+    .pipe($.uglify())
+    .pipe(gulp.dest('./'));
 });
 
 // SASS task, will run when any SCSS files change
@@ -227,6 +251,17 @@ gulp.task('build', function(callback) {
     'usemin',
     'version',
     'copy:prod',
+    callback);
+});
+
+/**
+ * don't run locally, this will clean all your local files
+ */
+gulp.task('dist', function(callback) {
+  runSequence(
+    'build',
+    'clean:src',
+    'move:dist'
     callback);
 });
 

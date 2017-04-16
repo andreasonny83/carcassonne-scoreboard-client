@@ -11,6 +11,10 @@
   "bugs": {
     "url": "https://github.com/andreasonny83/carcassonne-scoreboard-client/issues"
   },
+  "engines": {
+    "node": "6.x",
+    "npm": "3.x"
+  },
   "scripts": {
     "bower": "bower",
     "postinstall": "bower install",

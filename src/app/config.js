@@ -13,7 +13,9 @@
   angular
     .module('app')
     .constant('serverApp', {
-      server : 'http://localhost',
-      port   : 5000
+      server : 'https://carcassonne-scoreboard.herokuapp.com', // server
+      port   : 443
+      // server : 'http://localhost',
+      // port   : 5000
     });
 })();

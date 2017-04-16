@@ -257,11 +257,11 @@ gulp.task('build', function(callback) {
 /**
  * don't run locally, this will clean all your local files
  */
-gulp.task('dist', function(callback) {
+gulp.task('deploy', function(callback) {
   runSequence(
     'build',
     'clean:src',
-    'move:dist'
+    'move:dist',
     callback);
 });
 

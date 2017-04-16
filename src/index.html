@@ -14,10 +14,10 @@ Copyright (c) 2015-2017 andreasonny83. All rights reserved.
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
-  <title>Carcassonne Scoreboard</title>
-  <meta name="description" content="Carcassonne Scoreboard is an online scorebard for the boardgame Carcassonne. Start a new game and keep track of your point using a fancy web application instead of card and paper.">
+  <title>Carcassonne Online Scoreboard</title>
+  <title id="pageTitle">Carcassonne Online Scoreboard</title>
+  <meta name="description" content="Online Scoreboard for the famous boardgame Carcassonne. Start a new game and keep track of your score using a fancy web application instead of card and paper.">
   <meta name="keywords" content="carcassonne, carcassonne webapp, carcassonne scoreboard, carcassonne online, online scoreboard, online game scoreboard">
-  <link rel="canonical" href="https://carcassonne.sonnywebdesign.com">
 
   <link rel="apple-touch-icon" sizes="57x57" href="images/apple-icon-57x57.png">
   <link rel="apple-touch-icon" sizes="60x60" href="images/apple-icon-60x60.png">
@@ -41,13 +41,12 @@ Copyright (c) 2015-2017 andreasonny83. All rights reserved.
 
   <!-- Add to homescreen for Chrome on Android -->
   <meta name="mobile-web-app-capable" content="yes">
-  <meta name="Carcassonne scoreboard" content="Carcassonne Scoreboard">
   <link rel="icon" sizes="192x192" href="images/android-icon-192x192.png">
 
   <!-- Add to homescreen for Safari on iOS -->
   <meta name="apple-mobile-web-app-capable" content="yes">
   <meta name="apple-mobile-web-app-status-bar-style" content="black">
-  <meta name="apple-mobile-web-app-title" content="Carcassonne Scoreboard">
+  <meta name="apple-mobile-web-app-title" content="Carcassonne Online Scoreboard">
   <link rel="apple-touch-icon" href="images/apple-icon-152x152.png">
 
   <!-- Tile icon for Win8 (144x144 + tile color) -->
@@ -61,11 +60,33 @@ Copyright (c) 2015-2017 andreasonny83. All rights reserved.
   <link rel="shortcut icon" href="favicon.ico">
   <![endif]-->
 
+  <meta property="og:type" content="Website">
+  <meta property="og:title" content="Carcassonne Online Scoreboard">
+  <meta property="og:image" content="http://carcassonne.sonnywebdesign.com/images/android-icon-192x192.png">
+  <meta property="og:description" content="Online Scoreboard for the famous boardgame Carcassonne. Start a new game and keep track of your score using a fancy web application instead of card and paper.">
+  <meta property="og:url" content="http://carcassonne.sonnywebdesign.com">
+  <meta property="og:site_name" content="Carcassonne Online Scoreboard">
+  <meta name="twitter:card" content="summary">
+
+  <link rel="canonical" href="http://carcassonne.sonnywebdesign.com">
+  <link href="http://carcassonne.sonnywebdesign.com" hreflang="en-GB" rel="alternate" title="Carcassonne Online Scoreboard" type="text/html">
+  <link href="http://carcassonne.sonnywebdesign.com" hreflang="en" rel="alternate" title="Carcassonne Online Scoreboard" type="text/html">
+
   <!-- build:css css/main.min.css -->
   <link rel="stylesheet" href="bower_components/angular-material/angular-material.min.css">
   <link rel="stylesheet" href="css/main.css">
   <!-- endbuild -->
   <script>document.documentElement.className = document.documentElement.className.replace("no-js","js");</script>
+
+  <!-- Google Analytics -->
+  <script>
+    (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+    (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+    m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+    })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+    ga('create', 'UA-96083697-1', 'auto');
+    ga('send', 'pageview');
+  </script>
 </head>
 <body ng-controller="MainController as mainCtrl">
   <!--[if lt IE 8]>
@@ -126,16 +147,6 @@ Copyright (c) 2015-2017 andreasonny83. All rights reserved.
   <!-- build:templates -->
 
   <!-- endbuild -->
-
-  <!-- Google Analytics -->
-  <script>
-    (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
-    (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
-    m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
-    })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
-    ga('create', 'UA-96083697-1', 'auto');
-    ga('send', 'pageview');
-  </script>
 
   <!-- Begin Cookie Consent plugin by Silktide - http://silktide.com/cookieconsent -->
   <script type="text/javascript">

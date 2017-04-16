@@ -430,7 +430,7 @@ Animations
 }
 
 .page.ng-scope {
-  min-height: calc(100% - 208px);
+  margin-bottom: 140px;
 }
 
 section {
@@ -747,11 +747,25 @@ It means that loaders will fallback to a text state of simply saying "Loading...
   background-color: #1f62b0;
   color: #fccd25;
   overflow: auto;
-  min-height: 80px;
+}
+
+.header h1 {
+  font-size: 32px;
+}
+
+@media screen and (max-width: 600px) {
+  .header h1 {
+    font-size: 26px;
+  }
+}
+
+@media screen and (max-width: 600px) {
+  .header .desc {
+    display: none;
+  }
 }
 
 .page-header-sub {
-  background-color: #fff;
   padding: 15px;
   box-shadow: 0 2px 6px rgba(0, 0, 0, 0.2);
   position: relative;
@@ -767,11 +781,13 @@ It means that loaders will fallback to a text state of simply saying "Loading...
 }
 
 .footer {
-  border-top: 1px solid #fccd25;
-  bottom: 0;
-  background-color: rgba(252, 205, 37, 0.13);
-  margin: 30px 0 0;
   padding: 30px 0 15px;
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  border-top: 1px solid #fccd25;
+  background-color: #fbf5df;
   text-align: center;
 }
 

@@ -1,4 +1,4 @@
-var CACHE_NAME = 'carcassonne-scoreboard-client::v5';
+var CACHE_NAME = 'carcassonne-scoreboard-client::v6';
 // The files we want to cache
 var urlsToCache = [
   '/',

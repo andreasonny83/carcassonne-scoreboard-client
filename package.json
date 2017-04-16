@@ -20,7 +20,8 @@
     "clean:dist": "rimraf ./*.* ./src",
     "deploy": "npm run build && clean:dist && nodemon ./dist/index.js",
     "preserve:dist": "gulp build",
-    "serve:dist": "gulp serve:dist"
+    "serve:dist": "gulp serve:dist",
+    "heroku-postbuild": "npm run deploy"
   },
   "contributors": [],
   "private": true,

@@ -14,9 +14,6 @@ before_install:
 script:
   - npm run test
 
-after_success:
-  - npm run deploy
-
 branches:
   except:
     - /^v\d+\.\d+\.\d+$/

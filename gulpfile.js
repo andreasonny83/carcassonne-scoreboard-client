@@ -20,7 +20,7 @@ var args        = minimist(process.argv.slice(2));
 
 // browser-sync task, only cares about compiled CSS
 gulp.task('browser-sync', function() {
-  browserSync({
+  return browserSync({
     server: {
       baseDir: "./src/"
     }
@@ -52,7 +52,7 @@ gulp.task('bs-reload', function() {
 
 // delete build folder
 gulp.task('clean:build', function () {
-  del([
+  return del([
     './dist/'
   ]);
 });
@@ -77,7 +77,7 @@ gulp.task('fonts', ['iconfont'], function() {
 
 // copy base files
 gulp.task('copy', function() {
-  gulp
+  return gulp
     .src([
       './src/*.*',
       './src/.htaccess',
@@ -89,7 +89,7 @@ gulp.task('copy', function() {
 gulp.task('copy:prod', function() {
   // rename and uglify config.prod.js if present
   // otherwise use config.js
-  gulp
+  return gulp
     .src([
       './src/app/config.js',
       './src/app/config.prod.js'
@@ -101,7 +101,8 @@ gulp.task('copy:prod', function() {
 
 // SASS task, will run when any SCSS files change
 gulp.task('sass', function() {
-  return gulp.src('./src/sass/main.scss')
+  return gulp
+    .src('./src/sass/main.scss')
     .pipe($.sourcemaps.init())
     .pipe($.sass({
       outputStyle: 'expanded',
@@ -119,7 +120,8 @@ gulp.task('sass', function() {
 
 // SASS Build task
 gulp.task('sass:build', function() {
-  return gulp.src('./src/sass/main.scss')
+  return gulp
+    .src('./src/sass/main.scss')
     .pipe($.sourcemaps.init())
     .pipe($.sass({
       outputStyle: 'compact'
@@ -138,7 +140,8 @@ gulp.task('sass:build', function() {
 });
 
 gulp.task('version', function() {
-  return gulp.src('./dist/js/templates.js')
+  return gulp
+    .src('./dist/js/templates.js')
     .pipe($.injectVersion())
     .pipe(gulp.dest('./dist/js/'));
 });
@@ -148,7 +151,8 @@ gulp.task('version', function() {
 gulp.task('usemin', function() {
   var baseUrl = args.base_url ? args.base_url : '/';
 
-  return gulp.src('./src/index.html')
+  return gulp
+    .src('./src/index.html')
     // add templates path
     .pipe($.htmlReplace({
         'templates': '<script type="text/javascript" src="js/templates.js"></script>',
@@ -167,9 +171,8 @@ gulp.task('usemin', function() {
 
 // make templateCache from all HTML files
 gulp.task('templates', function() {
-  return gulp.src([
-    './src/app/**/*.html'
-  ])
+  return gulp
+    .src(['./src/app/**/*.html'])
     .pipe($.htmlmin())
     .pipe($.angularTemplatecache({
       module: 'app',
@@ -181,7 +184,8 @@ gulp.task('templates', function() {
 gulp.task('iconfont', function() {
   var runTimestamp = Math.round(Date.now()/1000);
 
-  return gulp.src(['./src/assets/icons/*.svg'])
+  return gulp
+    .src(['./src/assets/icons/*.svg'])
     .pipe($.iconfont({
       fontName: 'carcassonne-scoreboard-font',
       prependUnicode: true,

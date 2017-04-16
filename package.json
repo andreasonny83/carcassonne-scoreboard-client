@@ -18,7 +18,7 @@
     "start": "gulp serve",
     "build": "gulp build",
     "clean:dist": "rimraf ./*.* ./src",
-    "deploy": "npm run build && clean:dist && nodemon ./dist/index.js",
+    "deploy": "npm run build && npm run clean:dist && nodemon ./dist/index.js",
     "preserve:dist": "gulp build",
     "serve:dist": "gulp serve:dist",
     "heroku-postbuild": "npm run deploy"
@@ -26,9 +26,12 @@
   "contributors": [],
   "private": true,
   "license": "MIT",
-  "devDependencies": {
+  "dependencies": {
     "browser-sync": "2.13.0",
+    "bower": "1.8.0",
     "del": "2.2.1",
+    "express": "4.15.2",
+    "gulp": "3.9.1",
     "gulp-angular-templatecache": "2.0.0",
     "gulp-autoprefixer": "3.1.0",
     "gulp-changed": "1.3.0",
@@ -55,7 +58,7 @@
     "karma-phantomjs-launcher": "1.0.1",
     "karma-safari-launcher": "1.0.0",
     "minimist": "1.2.0",
-    "nodemon": "^1.11.0",
+    "nodemon": "1.11.0",
     "npm": "3.10.5",
     "opn": "4.0.2",
     "rimraf": "2.6.1",
@@ -64,10 +67,5 @@
     "serve-static": "1.11.1",
     "tiny-lr": "0.2.1",
     "watch": "0.19.1"
-  },
-  "dependencies": {
-    "bower": "1.8.0",
-    "express": "4.15.2",
-    "gulp": "3.9.1"
   }
 }

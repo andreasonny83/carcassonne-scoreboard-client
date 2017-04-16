@@ -1,8 +1,8 @@
-node_modules
-bower_components
+/node_modules
+/src/bower_components
 
-npm-debug.log
+/*.log
 
-dist
-src/css
-src/fonts
+/dist
+/src/css
+/src/fonts

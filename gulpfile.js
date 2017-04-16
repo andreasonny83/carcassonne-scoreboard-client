@@ -62,10 +62,13 @@ gulp.task('clean:src', function () {
   return del([
     './src/',
     '*.js',
-    '.*',
     '*.md',
-    'LICENSE',
-    'bower.json'
+    '*.log',
+    '*.lock',
+    '*.yml',
+    'bower.json',
+    '.bowerrc',
+    'LICENSE'
   ]);
 });
 
@@ -118,8 +121,6 @@ gulp.task('move:dist', function() {
     .src([
       './dist/**/*',
     ])
-    .pipe($.rename('config.js'))
-    .pipe($.uglify())
     .pipe(gulp.dest('./'));
 });
 

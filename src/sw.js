@@ -1,4 +1,4 @@
-var CACHE_NAME = 'carcassonne-scoreboard-client::v6';
+var CACHE_NAME = 'carcassonne-scoreboard-client::v7';
 // The files we want to cache
 var urlsToCache = [
   '/',
@@ -7,14 +7,10 @@ var urlsToCache = [
   'js/angularlibs.js',
   'js/libs.js',
   'js/appcomponents.js',
-  'js/config.js',
   'js/mainapp.js',
   'js/templates.js',
-  'fonts/carcassonne-scoreboard-font/carcassonne-scoreboard-font.eot',
-  'fonts/carcassonne-scoreboard-font/carcassonne-scoreboard-font.ttf',
-  'fonts/carcassonne-scoreboard-font/carcassonne-scoreboard-font.woff',
-  'fonts/carcassonne-scoreboard-font/carcassonne-scoreboard-font.woff2',
-  'fonts/carcassonne-scoreboard-font/carcassonne-scoreboard-font.svg'
+  'images/*.*',
+  'fonts/carcassonne-scoreboard-font/*.*'
 ];
 
 // Set the callback for the install step

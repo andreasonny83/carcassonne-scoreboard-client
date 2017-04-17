@@ -1,6 +1,6 @@
 {
   "name": "carcassonne-scoreboard-client",
-  "version": "1.2.0",
+  "version": "1.3.0",
   "author": "Andrea Sonny <andreasonny83@gmail.com>",
   "description": "Online Scoreboard for the famous boardgame Carcassonne",
   "main": "index.js",
@@ -18,11 +18,13 @@
   "scripts": {
     "bower": "bower",
     "postinstall": "bower install",
-    "test": "./node_modules/.bin/karma start karma.conf.js --single-run --browsers PhantomJS",
+    "karma": "karma",
+    "test": "karma start karma.conf.js --single-run --browsers PhantomJS",
     "start": "gulp serve",
     "build": "gulp build",
+    "nodemon": "nodemon",
     "preserve:dist": "gulp build",
-    "serve:dist": "gulp serve:dist",
+    "serve:dist": "nodemon dist/index.js",
     "heroku-postbuild": "gulp deploy"
   },
   "contributors": [],

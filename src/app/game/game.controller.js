@@ -14,10 +14,10 @@
         .module('app')
         .controller('GameController', GameController);
 
-    GameController.$inject = ['$scope', '$location', '$routeParams', '$mdToast', '$mdDialog', 'gameType', 'socket'];
+    GameController.$inject = ['$anchorScroll', '$scope', '$location', '$routeParams', '$mdToast', '$mdDialog', 'gameType', 'socket'];
 
     /* @ngInject */
-    function GameController($scope, $location, $routeParams, $mdToast, $mdDialog, gameType, socket) {
+    function GameController($anchorScroll, $scope, $location, $routeParams, $mdToast, $mdDialog, gameType, socket) {
       var vm = this,
           new_game = {
             name: 'New game',
@@ -68,6 +68,13 @@
           color: assignRndMeeple(),
           score: 0
         });
+
+        var body = document.querySelector('div.page');
+
+        setTimeout(function() {
+          body.scrollTop = body.scrollHeight;
+          document.querySelector('#player_' + vm.game.players.length + ' input').focus();
+        }, 0);
       }
 
       vm.removePlayer = function(key) {

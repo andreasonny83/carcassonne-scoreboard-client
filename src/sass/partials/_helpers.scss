@@ -1,5 +1,23 @@
+body {
+  overflow: hidden;
+}
+
+#app {
+  height: 100%;
+}
+
 .page.ng-scope {
-  margin-bottom: 140px;
+  overflow-y: auto;
+  position: absolute;
+  left: 0;
+  top: 65px;
+  bottom: 59px;
+  width: 100%;
+
+  @media all and (min-height: $break-large) {
+    top: 114px;
+    bottom: 84px;
+  }
 }
 
 section {

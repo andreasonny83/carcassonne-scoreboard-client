@@ -8,13 +8,15 @@
   h1 {
     font-size: 32px;
 
-    @media screen and (max-width: $break-large) {
+    @media all and (max-width: $break-large),
+           all and (max-height: $break-large) {
       font-size: 26px;
     }
   }
 
   .desc {
-    @media screen and (max-width: $break-large) {
+    @media all and (max-width: $break-large),
+           all and (max-height: $break-large) {
       display: none;
     }
   }

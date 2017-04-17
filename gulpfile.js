@@ -101,19 +101,6 @@ gulp.task('copy', function() {
     .pipe(gulp.dest('./dist/'));
 });
 
-gulp.task('copy:prod', function() {
-  // rename and uglify config.prod.js if present
-  // otherwise use config.js
-  return gulp
-    .src([
-      './src/app/config.js',
-      './src/app/config.prod.js'
-    ])
-    .pipe($.rename('config.js'))
-    .pipe($.uglify())
-    .pipe(gulp.dest('./dist/js/'));
-});
-
 gulp.task('move:dist', function() {
   // rename and uglify config.prod.js if present
   // otherwise use config.js
@@ -251,7 +238,6 @@ gulp.task('build', function(callback) {
     'templates',
     'usemin',
     'version',
-    'copy:prod',
     callback);
 });
 

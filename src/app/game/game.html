@@ -1,8 +1,8 @@
 <div class="page-header-sub">
   <md-content>
     <section layout="row" layout-align="start start" layout-align-sm="center center" layout-wrap>
-      <md-button flex-xs="100" flex-sm="auto" flex-md="nogrow" class="md-raised cs-button-back" ng-click="mainCtrl.goTo('/')" tabindex="17">Home</md-button>
-      <md-button flex-xs="100" flex-sm="auto" flex-md="nogrow" class="md-raised cs-button-back" ng-hide="{{gameCtrl.new_game}}" ng-click="gameCtrl.startGame()" tabindex="16">Resume</md-button>
+      <md-button flex-xs="100" flex-sm="auto" flex-md="nogrow" class="md-raised cs-button-back" ng-click="mainCtrl.goTo('/')">Home</md-button>
+      <md-button flex-xs="100" flex-sm="auto" flex-md="nogrow" class="md-raised cs-button-back" ng-hide="{{gameCtrl.new_game}}" ng-click="gameCtrl.startGame()">Resume</md-button>
     </section>
   </md-content>
   <h2 class="home">{{gameCtrl.game.name}}</h2>
@@ -22,7 +22,7 @@
       <div layout="row" layout-align="center">
         <md-input-container flex="50">
           <label>Game name</label>
-          <input ng-model="gameCtrl.game.name" tabindex="1">
+          <input ng-model="gameCtrl.game.name" md-autofocus>
         </md-input-container>
       </div>
 
@@ -32,16 +32,20 @@
         <md-divider></md-divider>
 
         <!-- User list -->
-        <md-list-item class="md-3-line md-no-proxy secondary-button-padding md-with-secondary" ng-repeat="(key, player) in gameCtrl.game.players">
+        <md-list-item class="md-3-line md-no-proxy secondary-button-padding md-with-secondary"
+                      ng-repeat="(key, player) in gameCtrl.game.players"
+                      id="player_{{key+1}}">
           <div class="md-list-item-text">
             <md-input-container class="input-container">
               <label>Player name</label>
-              <input ng-model="player.name" tabindex="{{key + (key + 3)}}">
+              <input ng-model="player.name"
+                     ng-focus="$event.target.select()"
+                     md-autofocus>
             </md-input-container>
 
             <md-input-container class="input-container">
               <label>Player color</label>
-              <md-select ng-model="player.color" tabindex="{{key + (key + 4)}}">
+              <md-select ng-model="player.color">
                 <md-option ng-repeat="meeple in gameCtrl.game.meeples" value="{{meeple}}">
                   {{meeple}}
                 </md-option>
@@ -62,14 +66,14 @@
       </md-list>
       <!-- User list End -->
 
-      <md-button class="md-raised cs-button-primary cs-button-md" ng-click="gameCtrl.addPlayer()" tabindex="2">Add player</md-button>
+      <md-button class="md-raised cs-button-primary cs-button-md" ng-click="gameCtrl.addPlayer()">Add player</md-button>
 
     </md-card-content>
 
     <md-card-actions layout="row" layout-align="end center">
       <md-button class="cs-alert" ng-click="gameCtrl.deleteGame()">Delete game</md-button>
-      <md-button ng-hide="{{gameCtrl.new_game}}" ng-click="gameCtrl.startGame()" tabindex="16">Resume Game</md-button>
-      <md-button ng-show="{{gameCtrl.new_game}}" ng-click="gameCtrl.startGame()" tabindex="16">Start Game</md-button>
+      <md-button ng-hide="{{gameCtrl.new_game}}" ng-click="gameCtrl.startGame()">Resume Game</md-button>
+      <md-button ng-show="{{gameCtrl.new_game}}" ng-click="gameCtrl.startGame()">Start Game</md-button>
     </md-card-actions>
   </md-card>
 </section>

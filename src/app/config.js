@@ -10,12 +10,14 @@
 (function() {
   'use strict';
 
+  var env = {};
+
+  // Import variables if present (from env.js)
+  if (window) {
+    Object.assign(env, window.__env);
+  }
+
   angular
     .module('app')
-    .constant('serverApp', {
-      server : 'https://carcassonne-scoreboard.herokuapp.com', // server
-      port   : 443
-      // server : 'http://localhost',
-      // port   : 5000
-    });
+    .constant('serverApp', env);
 })();

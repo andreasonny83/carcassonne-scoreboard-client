@@ -429,8 +429,28 @@ Animations
   }
 }
 
+body {
+  overflow: hidden;
+}
+
+#app {
+  height: 100%;
+}
+
 .page.ng-scope {
-  margin-bottom: 140px;
+  overflow-y: auto;
+  position: absolute;
+  left: 0;
+  top: 65px;
+  bottom: 59px;
+  width: 100%;
+}
+
+@media all and (min-height: 600px) {
+  .page.ng-scope {
+    top: 114px;
+    bottom: 84px;
+  }
 }
 
 section {
@@ -753,13 +773,13 @@ It means that loaders will fallback to a text state of simply saying "Loading...
   font-size: 32px;
 }
 
-@media screen and (max-width: 600px) {
+@media all and (max-width: 600px), all and (max-height: 600px) {
   .header h1 {
     font-size: 26px;
   }
 }
 
-@media screen and (max-width: 600px) {
+@media all and (max-width: 600px), all and (max-height: 600px) {
   .header .desc {
     display: none;
   }
@@ -781,7 +801,7 @@ It means that loaders will fallback to a text state of simply saying "Loading...
 }
 
 .footer {
-  padding: 30px 0 15px;
+  padding: 10px 0;
   position: fixed;
   bottom: 0;
   left: 0;
@@ -789,6 +809,12 @@ It means that loaders will fallback to a text state of simply saying "Loading...
   border-top: 1px solid #fccd25;
   background-color: #fbf5df;
   text-align: center;
+}
+
+@media all and (min-height: 600px) {
+  .footer {
+    padding: 30px 0 15px;
+  }
 }
 
 .footer p {

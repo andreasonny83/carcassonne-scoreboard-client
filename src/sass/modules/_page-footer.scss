@@ -1,5 +1,5 @@
 .footer {
-  padding: 30px 0 15px;
+  padding: 10px 0;
   position: fixed;
   bottom: 0;
   left: 0;
@@ -7,6 +7,10 @@
   border-top: 1px solid rgb(252, 205, 37);
   background-color: rgb(251, 245, 223);
   text-align: center;
+
+  @media all and (min-height: $break-large) {
+    padding: 30px 0 15px;
+  }
 
   p {
     padding: 0 10px 5px 10px;

@@ -20,6 +20,7 @@
     "postinstall": "bower install",
     "karma": "karma",
     "test": "karma start karma.conf.js --single-run --browsers PhantomJS",
+    "test:watch": "karma start karma.conf.js --auto-watch",
     "start": "gulp serve",
     "build": "gulp build",
     "nodemon": "nodemon",

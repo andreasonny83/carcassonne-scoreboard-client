@@ -13,8 +13,8 @@
   var env = {};
 
   // Import variables if present (from env.js)
-  if (window) {
-    Object.assign(env, window.__env);
+  if ('__env' in window) {
+    env = JSON.parse(JSON.stringify(window.__env));
   }
 
   angular

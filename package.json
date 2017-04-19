@@ -28,6 +28,7 @@
     "nodemon": "nodemon",
     "preserve:dist": "gulp build",
     "serve:dist": "nodemon dist/index.js",
+    "prebuild": "npm rebuild node-sass",
     "heroku-postbuild": "gulp deploy"
   },
   "contributors": [],

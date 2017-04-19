@@ -117,12 +117,13 @@ gulp.task('sass', function() {
 // SASS Build task
 gulp.task('sass:build', function() {
   return gulp
-    .src('./client/sass/main.scss')
+    .src('client/sass/main.scss')
     .pipe($.sourcemaps.init())
     .pipe($.sass({
       outputStyle: 'compact'
     }))
-    .pipe($.autoprefixer('last 2 versions',
+    .pipe($.autoprefixer(
+      'last 3 versions',
       'safari 6',
       'ie 9',
       'opera 12.1',
@@ -130,9 +131,8 @@ gulp.task('sass:build', function() {
       'android 4'
     ))
     .pipe($.cssnano())
-    .pipe($.rename({suffix: '.min'}))
     .pipe($.sourcemaps.write('/'))
-    .pipe(gulp.dest('dist/css'));
+    .pipe(gulp.dest('./client/css'));
 });
 
 gulp.task('version', function() {

@@ -54,7 +54,7 @@ gulp.task('clean:build', function () {
 gulp.task('clean:src', function () {
   return del([
     './client/',
-    '.*',
+    // '.*',
     './gulpfile.js',
     './karma.*.js',
     '*.md',

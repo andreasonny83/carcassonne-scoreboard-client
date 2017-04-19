@@ -7,7 +7,7 @@ const app = express();
 const api = require('./server/api');
 
 // set the static files location
-if (process.env.PORT) {
+if (!!process.env.PORT) {
   app.use(express.static(__dirname + '/dist'));
 } else {
   app.use(express.static(__dirname + '/client')); // for development when running `npm start`

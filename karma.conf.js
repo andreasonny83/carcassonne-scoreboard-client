@@ -13,14 +13,14 @@ module.exports = function(config) {
 
     // list of files / patterns to load in the browser
     files: [
-      'src/bower_components/angular/angular.js',
-      'src/bower_components/angular-route/angular-route.js',
-      'src/bower_components/angular-mocks/angular-mocks.js',
-      'src/bower_components/angular-animate/angular-animate.min.js',
-      'src/bower_components/angular-material/angular-material.min.js',
-      'src/bower_components/angular-aria/angular-aria.min.js',
-      'src/bower_components/socket.io-client/socket.io.js',
-      'src/app/**/*.js',
+      'client/bower_components/angular/angular.js',
+      'client/bower_components/angular-route/angular-route.js',
+      'client/bower_components/angular-mocks/angular-mocks.js',
+      'client/bower_components/angular-animate/angular-animate.min.js',
+      'client/bower_components/angular-material/angular-material.min.js',
+      'client/bower_components/angular-aria/angular-aria.min.js',
+      'client/bower_components/socket.io-client/socket.io.js',
+      'client/app/**/*.js',
       'test/**/*.js'
     ],
 

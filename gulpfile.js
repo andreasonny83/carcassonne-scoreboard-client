@@ -22,7 +22,7 @@ var args        = minimist(process.argv.slice(2));
 gulp.task('browser-sync', function() {
   return browserSync({
     server: {
-      baseDir: "./src/",
+      baseDir: "./client/",
     },
     // Stop the browser from automatically opening
     open: false,
@@ -53,21 +53,22 @@ gulp.task('clean:build', function () {
 // delete source folder
 gulp.task('clean:src', function () {
   return del([
-    './src/',
-    '*.js',
+    './client/',
+    '.*',
+    './gulpfile.js',
+    './karma.*.js',
     '*.md',
     '*.log',
     '*.lock',
     '*.yml',
     'bower.json',
-    '.bowerrc',
     'LICENSE'
   ]);
 });
 
 // optimize images
 gulp.task('images', function() {
-  return gulp.src('./src/images/**/*')
+  return gulp.src('./client/images/**/*')
     .pipe($.changed('./dist/images'))
     .pipe($.imagemin({
       optimizationLevel: 3,
@@ -79,7 +80,7 @@ gulp.task('images', function() {
 
 // copy fonts
 gulp.task('fonts', ['iconfont'], function() {
-  return gulp.src(['./src/fonts/carcassonne-scoreboard-font/*.*'])
+  return gulp.src(['./client/fonts/carcassonne-scoreboard-font/*.*'])
     .pipe(gulp.dest('./dist/fonts/carcassonne-scoreboard-font'));
 });
 
@@ -87,34 +88,24 @@ gulp.task('fonts', ['iconfont'], function() {
 gulp.task('copy', function() {
   return gulp
     .src([
-      './src/*.*',
-      './src/.htaccess',
-      '!./src/index.html'
+      './client/*.*',
+      './client/.htaccess',
+      '!./client/index.html'
     ])
     .pipe(gulp.dest('./dist/'));
-});
-
-gulp.task('move:dist', function() {
-  // rename and uglify config.prod.js if present
-  // otherwise use config.js
-  return gulp
-    .src([
-      './dist/**/*',
-    ])
-    .pipe(gulp.dest('./'));
 });
 
 // SASS task, will run when any SCSS files change
 gulp.task('sass', function() {
   return gulp
-    .src('./src/sass/main.scss')
+    .src('./client/sass/main.scss')
     .pipe($.sourcemaps.init())
     .pipe($.sass({
       outputStyle: 'expanded',
       errLogToConsole: true
     }))
     .pipe($.sourcemaps.write('/'))
-    .pipe(gulp.dest('./src/css'))
+    .pipe(gulp.dest('./client/css'))
     .pipe(reload({
       stream: true
     }))
@@ -126,7 +117,7 @@ gulp.task('sass', function() {
 // SASS Build task
 gulp.task('sass:build', function() {
   return gulp
-    .src('./src/sass/main.scss')
+    .src('./client/sass/main.scss')
     .pipe($.sourcemaps.init())
     .pipe($.sass({
       outputStyle: 'compact'
@@ -157,7 +148,7 @@ gulp.task('usemin', function() {
   var baseUrl = args.base_url ? args.base_url : '/';
 
   return gulp
-    .src('./src/index.html')
+    .src('./client/index.html')
     // add templates path
     .pipe($.htmlReplace({
         'templates': '<script type="text/javascript" src="js/templates.js"></script>',
@@ -177,7 +168,7 @@ gulp.task('usemin', function() {
 // make templateCache from all HTML files
 gulp.task('templates', function() {
   return gulp
-    .src(['./src/app/**/*.html'])
+    .src(['./client/app/**/*.html'])
     .pipe($.htmlmin())
     .pipe($.angularTemplatecache({
       module: 'app',
@@ -190,7 +181,7 @@ gulp.task('iconfont', function() {
   var runTimestamp = Math.round(Date.now()/1000);
 
   return gulp
-    .src(['./src/assets/icons/*.svg'])
+    .src(['./client/assets/icons/*.svg'])
     .pipe($.iconfont({
       fontName: 'carcassonne-scoreboard-font',
       prependUnicode: true,
@@ -201,21 +192,21 @@ gulp.task('iconfont', function() {
       .on('glyphs', function(glyphs, options) {
         // console.log(glyphs, options);
       })
-    .pipe(gulp.dest('./src/fonts/carcassonne-scoreboard-font'));
+    .pipe(gulp.dest('./client/fonts/carcassonne-scoreboard-font'));
 });
 
 // default task to be run with `gulp` command
 // this default task will use Gulp to watch files.
 gulp.task('serve', ['fonts', 'browser-sync', 'sass'], function() {
-  gulp.watch('./src/css/*.css', function(file) {
+  gulp.watch('./client/css/*.css', function(file) {
     if (file.type === "changed") {
       reload(file.path);
     }
   });
-  gulp.watch(['./src/index.html', './src/app/**/*.html'], ['bs-reload']);
-  gulp.watch('./src/assets/icons/*.svg', ['fonts', 'bs-reload']);
-  gulp.watch('./src/app/**/*.js', ['bs-reload']);
-  gulp.watch('./src/sass/**/*.scss', ['sass']);
+  gulp.watch(['./client/index.html', './client/app/**/*.html'], ['bs-reload']);
+  gulp.watch('./client/assets/icons/*.svg', ['fonts', 'bs-reload']);
+  gulp.watch('./client/app/**/*.js', ['bs-reload']);
+  gulp.watch('./client/sass/**/*.scss', ['sass']);
 });
 
 /**
@@ -241,7 +232,6 @@ gulp.task('deploy', function(callback) {
   runSequence(
     'build',
     'clean:src',
-    'move:dist',
     callback);
 });
 

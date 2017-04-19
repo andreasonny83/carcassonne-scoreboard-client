@@ -1,8 +1,8 @@
 /node_modules
-/src/bower_components
+/client/bower_components
 
 /*.log
 
 /dist
-/src/css
-/src/fonts
+/client/css
+/client/fonts

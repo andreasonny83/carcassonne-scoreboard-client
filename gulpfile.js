@@ -22,18 +22,11 @@ var args        = minimist(process.argv.slice(2));
 gulp.task('browser-sync', function() {
   return browserSync({
     server: {
-      baseDir: "./src/"
-    }
+      baseDir: "./src/",
+    },
+    // Stop the browser from automatically opening
+    open: false,
   });
-});
-
-// start webserver
-gulp.task('serve', function(done) {
-  return browserSync({
-    server: {
-      baseDir: './src/'
-    }
-  }, done);
 });
 
 // start webserver from dist folder to check how it will look in production

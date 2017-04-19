@@ -1,5 +1,5 @@
 const express = require('express');
-const http = require('http');
+const morgan = require('morgan');
 const port = process.env.PORT || 5000;
 const app = express();
 
@@ -13,13 +13,14 @@ if (!!process.env.PORT) {
   app.use(express.static(__dirname + '/client')); // for development when running `npm start`
 }
 
+if (process.env.DEBUG === 'true') {
+  app.use(morgan('dev')); // log every request to the console in Debug mode
+
+  console.log('App running in debug mode.');
+}
+
 // Set our api routes
 app.use('/', api);
 app.set('port', port);
-
-/**
- * Create HTTP server.
- */
-const server = http.createServer(app);
 
 app.listen(port, () => console.log(`API running on http://localhost:${port}`));

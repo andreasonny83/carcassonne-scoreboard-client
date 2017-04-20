@@ -22,6 +22,7 @@ $primary-color-1:          #00B158;
 $primary-color-2:          #6CDCA4;
 
 $carcassonne-blue:         #1f62b0;
+$carcassonne-blue-dark:    #1b5598;
 $carcassonne-yellow:       #fccd25;
 $carcassonne-red:          #AD3C3C;
 $carcassonne-red-light:    #EA4646;
@@ -30,4 +31,13 @@ $loader-foreground:        $carcassonne-yellow;
 $carcassonne-yellow-light: rgba(255,240,80,.25);
 
 $break-small: 320px;
+$break-medium: 420px;
 $break-large: 600px;
+
+$header-small: 46px;
+$header-medium: 65px;
+$header-large-single-line: 80px;
+$header-large: 108px;
+
+$footer-small: 46px;
+$footer-large: 67px;

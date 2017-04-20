@@ -1,22 +1,44 @@
 body {
-  overflow: hidden;
+  min-width: 320px;
 }
 
 #app {
-  height: 100%;
-}
-
-.page.ng-scope {
   overflow-y: auto;
-  position: absolute;
-  left: 0;
-  top: 65px;
-  bottom: 59px;
-  width: 100%;
+  display: block;
+  height: 100%;
 
-  @media all and (min-height: $break-large) {
-    top: 114px;
-    bottom: 84px;
+  .page {
+    max-width: 920px;
+    margin: 0 auto;
+
+    min-height: calc(100% - #{$header-small} - #{$footer-small});
+
+    @media all and (min-width: $break-medium) and (min-height: $break-medium) {
+      min-height: calc(100% - #{$header-medium} - #{$footer-small});
+    }
+
+    @media all and (min-width: $break-medium) and (min-height: $break-large) {
+      min-height: calc(100% - #{$header-medium} - #{$footer-large});
+    }
+
+    @media all and (min-width: $break-large) and (min-height: $break-medium) {
+      min-height: calc(100% - #{$header-large-single-line} - #{$footer-small});
+    }
+
+    @media all and (min-width: $break-large) and (min-height: $break-large) {
+      min-height: calc(100% - #{$header-large} - #{$footer-large});
+    }
+  }
+
+  @media all and (max-width: $break-large - 1) {
+    .layout-padding {
+      padding: 0;
+      margin: 0;
+    }
+
+    .layout-padding > *, .layout-padding > .flex {
+      margin: 0;
+    }
   }
 }
 
@@ -26,7 +48,7 @@ section {
 
 /* fix the Angular-material toast position */
 md-toast {
-  z-index: 10000;
+  z-index: 9999;
   position: fixed;
 }
 
@@ -57,16 +79,5 @@ md-toast {
   }
   &.blue {
     color: #1F459E;
-  }
-}
-
-@media screen and (max-width: 720px) {
-  .layout-padding {
-    padding: 0;
-    margin: 0;
-  }
-
-  .layout-padding > *, .layout-padding > .flex {
-    margin: 0;
   }
 }

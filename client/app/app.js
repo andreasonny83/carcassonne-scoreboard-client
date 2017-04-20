@@ -48,7 +48,7 @@
         }
       })
       .when( '/game/new/', {
-        templateUrl: 'app/game/game.html',
+        templateUrl: 'app/game/game-setup.html',
         controller: 'GameController',
         controllerAs: 'gameCtrl',
         resolve: {

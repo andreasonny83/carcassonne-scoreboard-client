@@ -1,21 +1,38 @@
-<div class="page-header-sub">
-  <h2 class="home">Home</h2>
-</div>
+<div id="home">
 
-<md-content layout="row" layout-sm="column" layout-align="center center">
-  <h3>Users connected: {{mainCtrl.app.users_online}}</h3>
-</md-content>
-<md-content layout="row" layout-sm="column" layout-align="center center">
-  <h3>Games created so far: {{mainCtrl.app.games}}</h3>
-</md-content>
+  <div class="page-header-sub">
+    <h2 class="home">Home</h2>
+  </div>
 
-<md-content layout="row" layout-sm="column" layout-align="center center">
-  <section>
-    <md-content layout="row" layout-align="center center">
-      <md-button class="md-raised cs-button-primary cs-button-xl" ng-click="homeCtrl.newGame()" tabindex="1">Start a new game</md-button>
-    </md-content>
-    <md-content layout="row" layout-align="center center">
-      <md-button class="md-raised cs-button-primary cs-button-xl" ng-click="homeCtrl.joinGame()" tabindex="2">Join a game</md-button>
+  <md-content layout="row" layout-sm="column" layout-align="center center">
+    <h3>Users connected: {{mainCtrl.app.users_online}}</h3>
   </md-content>
-  </section>
-</md-content>
+
+  <md-content layout="row" layout-sm="column" layout-align="center center">
+    <h3>Games created so far: {{mainCtrl.app.games}}</h3>
+  </md-content>
+
+  <md-content layout="row" layout-sm="column" layout-align="center center">
+
+    <section>
+      <md-content layout="row" layout-align="center center">
+        <md-button class="md-raised cs-button-primary cs-button-xl"
+                   id="bt_new_game"
+                   ng-click="homeCtrl.newGame()">
+          Start a new game
+        </md-button>
+      </md-content>
+
+      <md-content layout="row" layout-align="center center">
+        <md-button class="md-raised cs-button-primary cs-button-xl"
+                   id="bt_join_game"
+                   ng-click="homeCtrl.joinGame()">
+          Join a game
+        </md-button>
+      </md-content>
+
+    </section>
+
+  </md-content>
+
+</div>

@@ -1,0 +1,15 @@
+#game-play {
+  .game-console-board {
+    width: 90%;
+    text-align: center;
+    margin: 20px auto 0 auto;
+
+    @media all and (max-width: $break-large - 1) {
+      width: 99%;
+    }
+  }
+
+  #gameID {
+    min-width: 235px;
+  }
+}

@@ -11,16 +11,16 @@
   color: rgba(255,255,255,0.87);
 }
 .md-button.cs-button-primary.cs-button-xl {
-  padding: 15px 100px;
+  padding: 15px 0;
 }
 .md-button.cs-button-primary.cs-button-lg {
-  padding: 10px 50px;
+  padding: 10px 0;
 }
 .md-button.cs-button-primary.cs-button-md {
-  padding: 6px 25px;
+  padding: 6px 0;
 }
 .md-button.cs-button-primary.cs-button-sm {
-  padding: 4px 15px;
+  padding: 4px 0;
 }
 
 /*
@@ -41,7 +41,7 @@
 .md-button.md-raised.blue,
 .md-button.md-raised.blue:not([disabled]),
 .md-button.md-raised.blue:not([disabled]):hover {
-  padding: 5px 25px;
+  padding: 5px 0;
   background: $carcassonne-blue;
   color: #DDD;
 }
@@ -50,7 +50,7 @@
 .md-button.md-raised.red,
 .md-button.md-raised.red:not([disabled]),
 .md-button.md-raised.red:not([disabled]):hover {
-  padding: 5px 25px;
+  padding: 5px 0;
   background: $carcassonne-red;
   color: #EEE;
 }

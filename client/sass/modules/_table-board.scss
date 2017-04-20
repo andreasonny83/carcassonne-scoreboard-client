@@ -1,6 +1,6 @@
 #table-board {
   position: relative;
-  width: 90%;
+  width: 99%;
   margin: 0 auto;
   text-align: center;
   box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.26);
@@ -69,12 +69,13 @@
     overflow-x: hidden;
     width: 100%;
 
-    &.scrollfix {
+    &.scrollfix,
+    &.mobile-scrollfix {
       width: calc(100% + 15px);
     }
 
     .scrollable {
-      max-height: 204px;
+      max-height: 80px;
       width: 100%;
       overflow: auto;
     }
@@ -121,16 +122,12 @@
   }
 }
 
-@media screen and (max-width: 720px) {
+@media screen and (min-width: $break-large) {
   #table-board {
-    width: 99%;
+    width: 90%;
 
     #table-body .scrollable {
-      max-height: 80px;
-    }
-
-    #table-body.mobile-scrollfix {
-      width: calc(100% + 15px);
+      max-height: 204px;
     }
   }
 }

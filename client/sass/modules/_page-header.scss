@@ -1,38 +1,61 @@
 .header {
   display: block;
+  height: $header-small;
+  overflow: hidden;
+  box-sizing: border-box;
   text-align: center;
   background-color: $carcassonne-blue;
+  border-bottom: 1px solid $carcassonne-blue-dark;
   color: $carcassonne-yellow;
-  overflow: auto;
 
   h1 {
-    font-size: 32px;
+    font-size: 18px;
+  }
 
-    @media all and (max-width: $break-large),
-           all and (max-height: $break-large) {
+  @media all and (min-width: $break-medium) and (min-height: $break-medium) {
+    height: $header-medium;
+
+    h1 {
       font-size: 26px;
     }
   }
 
+  @media all and (min-width: $break-large) and (min-height: $break-medium) {
+    height: $header-large-single-line;
+
+    h1 {
+      font-size: 32px;
+    }
+  }
+
+  @media all and (min-width: $break-large) and (min-height: $break-large) {
+    height: $header-large;
+  }
+
   .desc {
-    @media all and (max-width: $break-large),
-           all and (max-height: $break-large) {
-      display: none;
+    margin: 0 0 10px 0;
+    display: none;
+
+    @media all and (min-width: $break-large) and (min-height: $break-large) {
+      display: inline-block;
     }
   }
 }
 
 .page-header-sub {
   padding: 15px;
-  box-shadow: 0 2px 6px rgba(0,0,0,.2);
   position: relative;
   overflow: auto;
 
   h2 {
     margin: 0;
-    padding: 20px 0;
+    padding: 5px 0;
     line-height: 40px;
     font-size: 24px;
     text-align: center;
+
+    @media all and (min-height: $break-large) {
+      padding: 20px 0;
+    }
   }
 }

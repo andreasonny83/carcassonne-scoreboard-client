@@ -14,10 +14,14 @@
         .module('app')
         .controller('GameController', GameController);
 
-    GameController.$inject = ['$anchorScroll', '$scope', '$location', '$routeParams', '$mdToast', '$mdDialog', 'gameType', 'socket'];
+    GameController.$inject = [
+      '$anchorScroll', '$scope', '$location', '$routeParams',
+      '$mdToast', '$mdDialog', 'gameType', 'socket'
+    ];
 
     /* @ngInject */
-    function GameController($anchorScroll, $scope, $location, $routeParams, $mdToast, $mdDialog, gameType, socket) {
+    function GameController($anchorScroll, $scope, $location, $routeParams,
+                            $mdToast, $mdDialog, gameType, socket) {
       var vm = this,
           new_game = {
             name: 'New game',

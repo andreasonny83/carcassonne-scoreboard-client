@@ -32,9 +32,10 @@
     "preheroku-postbuild": "npm rebuild node-sass",
     "heroku-postbuild": "gulp deploy",
     "changelog": "changelog",
-    "release:major": "changelog -M && git add CHANGELOG.md && git commit -m 'updated CHANGELOG.md' && npm version major && git push origin && git push origin --tags",
-    "release:minor": "changelog -m && git add CHANGELOG.md && git commit -m 'updated CHANGELOG.md' && npm version minor && git push origin && git push origin --tags",
-    "release:patch": "changelog -p && git add CHANGELOG.md && git commit -m 'updated CHANGELOG.md' && npm version patch && git push origin && git push origin --tags"
+    "tag": "git push origin && git push origin --tags",
+    "release:major": "npm run commit && changelog -M && git add CHANGELOG.md && git commit -m 'updated CHANGELOG.md' && npm version major && npm run tag",
+    "release:minor": "npm run commit && changelog -m && git add CHANGELOG.md && git commit -m 'updated CHANGELOG.md' && npm version minor && npm run tag",
+    "release:patch": "npm run commit && changelog -p && git add CHANGELOG.md && git commit -m 'updated CHANGELOG.md' && npm version patch && npm run tag"
   },
   "contributors": [],
   "private": true,

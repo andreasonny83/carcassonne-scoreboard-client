@@ -23,4 +23,4 @@ if (process.env.DEBUG === 'true') {
 app.use('/', api);
 app.set('port', port);
 
-app.listen(port, () => console.log(`API running on http://localhost:${port}`));
+app.listen(port, () => console.log(`Server listening on port ${port}`));

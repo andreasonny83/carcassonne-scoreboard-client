@@ -7,23 +7,23 @@
  * https://andreasonny.mit-license.org/
  *
  */
-var gulp        = require('gulp');
-var $           = require('gulp-load-plugins')();
-var del         = require('del');
-var runSequence = require('run-sequence');
-var browserSync = require('browser-sync');
-var reload      = browserSync.reload;
-var minimist    = require('minimist');
-var gutil       = require('gulp-util');
-var Server      = require('karma').Server;
-var args        = minimist(process.argv.slice(2));
+const gulp        = require('gulp');
+const $           = require('gulp-load-plugins')();
+const del         = require('del');
+const runSequence = require('run-sequence');
+const browserSync = require('browser-sync');
+const minimist    = require('minimist');
+const gutil       = require('gulp-util');
+
+const reload      = browserSync.reload;
+const Server      = require('karma').Server;
+const args        = minimist(process.argv.slice(2));
 
 // browser-sync task, only cares about compiled CSS
 gulp.task('browser-sync', function() {
   return browserSync({
-    server: {
-      baseDir: "./client/",
-    },
+    // proxy from the node server
+    proxy: 'localhost:5000',
     // Stop the browser from automatically opening
     open: false,
   });
@@ -108,9 +108,6 @@ gulp.task('sass', function() {
     .pipe(gulp.dest('./client/css'))
     .pipe(reload({
       stream: true
-    }))
-    .pipe($.notify({
-      message: 'Styles task complete'
     }));
 });
 

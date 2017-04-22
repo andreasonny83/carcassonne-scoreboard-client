@@ -61,7 +61,7 @@ of the application and open a new tab in your browser to render the
 
 ### Configure the server side
 
-The default server app is supposed to respond at: `http://localhost:5000`
+The default server app is supposed to respond at: `http://localhost:3000`
 however, if you want to use a different address to host your server app,
 you can either use environment variables or manually update the `api.js` file
 stored inside your `server/` folder

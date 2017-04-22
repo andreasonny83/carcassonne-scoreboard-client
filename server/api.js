@@ -17,7 +17,7 @@ router.get('/env.js', function(req, res) {
       window.__env.server = "${process.env.API_URL || 'http://localhost'}";
 
       // API port number
-      window.__env.port = ${process.env.API_PORT || 5000};
+      window.__env.port = ${process.env.API_PORT || 5005};
 
       // Whether or not to enable debug mode
       // Setting this to false will disable console output

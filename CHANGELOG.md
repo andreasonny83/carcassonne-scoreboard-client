@@ -1,3 +1,9 @@
+#### 1.4.1 (2017-4-22)
+
+##### Refactors
+
+* **undefined:** changelog generation ([f0d985ce](https://github.com/andreasonny83/carcassonne-scoreboard-client/commit/f0d985ceeed4b964ff429d97609d42c7b463da87))
+
 ### 1.4.0 (2017-4-22)
 
 #### 1.0.6 (2016-7-12)

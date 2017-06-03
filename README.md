@@ -3,7 +3,7 @@
 [![Build Status](https://travis-ci.org/andreasonny83/carcassonne-scoreboard-client.svg?branch=master)](https://travis-ci.org/andreasonny83/carcassonne-scoreboard-client)
 [![Commitizen friendly](https://img.shields.io/badge/commitizen-friendly-brightgreen.svg)](http://commitizen.github.io/cz-cli/)
 
-> Live version running at: [https://carcassonne.sonnywebdesign.com](https://carcassonne.sonnywebdesign.com)
+> Live version running at: [carcassonne.sonnywebdesign.com](http://carcassonne.sonnywebdesign.com)
 
 ## Install
 

@@ -19,5 +19,8 @@
     "cookieconsent2": "1.0.10",
     "socket.io-client": "1.4.8",
     "angular-mocks": "1.6.4"
+  },
+  "resolutions": {
+    "angular": "1.6.4"
   }
 }

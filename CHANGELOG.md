@@ -1,3 +1,8 @@
+#### 1.5.0 (2018-5-13)
+
+*   Privacy Policy updated
+*   Google Analytics removed
+
 ### 1.4.1 (2017-4-22)
 
 ##### Refactors
